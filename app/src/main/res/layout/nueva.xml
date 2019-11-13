@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/CAMION"
+        android:layout_width="match_parent"
+        android:layout_height="43dp"
+        android:text="PATENTE" />
+
+    <Spinner
+        android:id="@+id/spinnerCamion"
+        android:layout_width="match_parent"
+        android:layout_height="43dp" />
+
+    <TextView
+        android:id="@+id/SEMI"
+        android:layout_width="match_parent"
+        android:layout_height="43dp"
+        android:text="SEMI" />
+
+    <Spinner
+        android:id="@+id/spinnerSemi"
+        android:layout_width="match_parent"
+        android:layout_height="43dp" />
+
+    <TextView
+        android:id="@+id/POSICION"
+        android:layout_width="match_parent"
+        android:layout_height="43dp"
+        android:text="POSICION" />
+
+    <Spinner
+        android:id="@+id/spinnerPosicion"
+        android:layout_width="match_parent"
+        android:layout_height="43dp"
+        android:spinnerMode="dropdown" />
+
+    <TextView
+        android:id="@+id/MARCA"
+        android:layout_width="match_parent"
+        android:layout_height="43dp"
+        android:text="MARCA" />
+
+    <Spinner
+        android:id="@+id/spinnerMarca"
+        android:layout_width="match_parent"
+        android:layout_height="43dp"/>
+
+    <TextView
+        android:id="@+id/TAMAÑO"
+        android:layout_width="match_parent"
+        android:layout_height="43dp"
+        android:text="TAMAÑO" />
+
+    <Spinner
+        android:id="@+id/spinnerTamaño"
+        android:layout_width="match_parent"
+        android:layout_height="43dp"/>
+
+
+    <TextView
+        android:id="@+id/TAMAÑO2"
+        android:layout_width="match_parent"
+        android:layout_height="43dp"
+        android:text="KMS" />
+
+    <Spinner
+        android:id="@+id/spinnerKms"
+        android:layout_width="match_parent"
+        android:layout_height="43dp"/>
+
+    <Button
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="67dp"
+        android:text="Continuar" />
+
+</LinearLayout>
