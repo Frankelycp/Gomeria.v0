@@ -49,12 +49,12 @@ public class Cambio extends AppCompatActivity {
 
 
         findViewById(R.id.submit_button).setOnClickListener(
-                new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        validateInput();
-                    }
-                }
+              new View.OnClickListener() {
+                @Override
+             public void onClick(View v) {
+               sendData();
+          }
+        }
         );
     }
 
@@ -84,23 +84,26 @@ public class Cambio extends AppCompatActivity {
     private void sendData() { // Send feedback to Google Spreadsheet if text input is valid
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://docs.google.com/forms/d/e/1FAIpQLSdpbhf5vLm9-1spc3O8LIVtVju1_vnVtOulr5ELAFYopkuqIQ/formResponse") // Your spreadsheet URL
+                .baseUrl("https://docs.google.com/forms/d/") // Your spreadsheet URL
                 .build();
         final SpreadsheetWebService spreadsheetWebService = retrofit.create(SpreadsheetWebService.class);
 
-        String fuegoInput = fuegoInputField.getText().toString();
-        String medidaInput = medidaInputField.getText().toString();
-        String tipoInput = tipoInputField.getText().toString();
-        String marcaInput = marcaInputField.getText().toString();
-        String observacioneskInput = observacionesInputField.getText().toString();
+
+
+                        String fuegoInput = fuegoInputField.getText().toString();
+                        String medidaInput = medidaInputField.getText().toString();
+                        String tipoInput = tipoInputField.getText().toString();
+                        String marcaInput = marcaInputField.getText().toString();
+                        String observacioneskInput = observacionesInputField.getText().toString();
 
 
 
-        Call<Void> feedbackCall = spreadsheetWebService.feedbackSend(fuegoInput, medidaInput, tipoInput, marcaInput,observacioneskInput);
+    Call<Void> feedbackCall = spreadsheetWebService.feedbackSend(fuegoInput, medidaInput, tipoInput, marcaInput,observacioneskInput);
         feedbackCall.enqueue(new Callback<Void>() {
-            @Override
-            public void onResponse(Call<Void> call, Response<Void> response) {
-                Log.d("XXX", "Submitted. " + response);
+        @Override
+        public void onResponse(Call<Void> call, Response<Void> response) {
+            Log.d("XXX", "Submitted. " + response);
+
                 Toast.makeText(Cambio.this,"Completado",Toast.LENGTH_LONG).show();
                 // Clear all fields after submitting
                 fuegoInputField.setText("");
@@ -110,11 +113,11 @@ public class Cambio extends AppCompatActivity {
                 observacionesInputField.setText("");
             }
 
-            @Override
-            public void onFailure(Call<Void> call, Throwable t) {
-                Log.e("XXX", "Fallo", t);
+        @Override
+        public void onFailure(Call<Void> call, Throwable t) {
+                    Log.e("XXX", "Failed", t);
                 Toast.makeText(Cambio.this,"Hay Algun Error!",Toast.LENGTH_LONG).show();
-            }
+        }
         });
     }
 
