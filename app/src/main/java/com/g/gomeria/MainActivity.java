@@ -7,6 +7,8 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.g.gomeria.Cambio.Camion;
+import com.g.gomeria.Cambio.Gomeria;
 import com.g.gomeria.NuevaLLanta.AddItem;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -14,6 +16,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button buttonAddItem;
     Button buttonAddItem2;
     Button buttonAddItem3;
+
+    Button gomeria;
+    Button camion;
+    Button regresar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,6 +34,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         buttonAddItem3 = (Button)findViewById(R.id.STOCK);
         buttonAddItem3.setOnClickListener(this);
+
+        gomeria = (Button)findViewById(R.id.gomeria);
+        gomeria.setOnClickListener(this);
+
+        camion = (Button)findViewById(R.id.camion);
+        camion.setOnClickListener(this);
+
+        regresar = (Button)findViewById(R.id.atras);
+        regresar.setOnClickListener(this);
+
+
+
+
+
+        gomeria.setVisibility(View.GONE);
+        camion.setVisibility(View.GONE);
+        regresar.setVisibility(View.GONE);
 
     }
 
@@ -47,59 +71,45 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         if(v==buttonAddItem2){
 
-            Intent intent = new Intent(getApplicationContext(),Cambio.class);
-            startActivity(intent);
+            gomeria.setVisibility(View.VISIBLE);
+            camion.setVisibility(View.VISIBLE);
+            buttonAddItem3.setVisibility(View.GONE);
+            buttonAddItem.setVisibility(View.GONE);
+            regresar.setVisibility(View.VISIBLE);
+
+            //Intent intent = new Intent(getApplicationContext(), Gomeria.class);
+           // startActivity(intent);
         }
 
+
+        if(v==regresar){
+
+            gomeria.setVisibility(View.GONE);
+            camion.setVisibility(View.GONE);
+            buttonAddItem3.setVisibility(View.VISIBLE);
+            buttonAddItem.setVisibility(View.VISIBLE);
+            regresar.setVisibility(View.GONE);
+
+        }
+
+        if(v==gomeria){
+
+            Intent intent = new Intent(getApplicationContext(), Gomeria.class);
+            startActivity(intent);
+
+        }
+
+        if(v==camion){
+
+            Intent intent = new Intent(getApplicationContext(), Camion.class);
+            startActivity(intent);
+
+        }
+
+
     }
 }
 
 
 
 
-
-
-
-/*
-public class MainActivity extends AppCompatActivity {
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-
-        Button stock = (Button) findViewById(R.id.STOCK);
-        stock.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(), Stock.class);
-                startActivityForResult(intent, 0);
-            }
-        });
-
-        Button nueva = (Button) findViewById(R.id.NUEVA);
-        nueva.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent (v.getContext(), Nueva.class);
-                startActivityForResult(intent, 0);
-            }
-        });
-
-
-        Button cambio = (Button) findViewById(R.id.CAMBIO);
-        cambio.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent (v.getContext(), Cambio.class);
-                startActivityForResult(intent, 0);
-            }
-        });
-
-
-    }
-
-
-}
-*/

@@ -25,9 +25,12 @@
         </activity>
         <activity android:name=".NuevaLLanta.AddItem"/>
 
-        <activity android:name=".Cambio"/>
+        <activity android:name=".Cambio.Gomeria"/>
 
         <activity android:name=".Stock"/>
+
+        <activity android:name=".Cambio.Camion"/>
+
     </application>
 
 </manifest>
