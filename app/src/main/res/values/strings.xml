@@ -1,15 +1,5 @@
 <resources>
-    <string name="app_name">Spreadsheet</string>
+    <string name="app_name">Gomeria</string>
 
-    <string name="fuego_input">Fuego</string>
-    <string name="medida_input">Medida</string>
-    <string name="tipo_input">Tipo</string>
-    <string name="marca_input">Marca</string>
-    <string name="observaciones_input">Observaciones</string>
-    <string name="fuego_input_hint">Ingrese N° Fuego</string>
-    <string name="medida_input_hint">Ingrese Medida</string>
-    <string name="tipo_input_hint">Ingrese Tipo</string>
-    <string name="marca_input_hint">Ingrese Marca</string>
-    <string name="observaciones_input_hint">Observaciones</string>
 
 </resources>

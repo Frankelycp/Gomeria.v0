@@ -1,54 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.tutorialspoint7.myapplication">
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.g.gomeria">
+
+
 
     <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="Gomeria"
+        android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name="com.g.gomeria.MainActivity">
+        android:theme="@style/AppTheme"
+        tools:ignore="GoogleAppIndexingWarning">
+
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-
-        <activity
-            android:name="com.g.gomeria.Cambio"
-            android:label="Cambio">
-
-            <intent-filter>
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-
-        </activity>
-
-        <activity
-        android:name="com.g.gomeria.Nueva"
-        android:label="Nueva">
-
-        <intent-filter>
-            <category android:name="android.intent.category.DEFAULT" />
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
-
-    </activity>
-
-        <activity
-            android:name="com.g.gomeria.Stock"
-            android:label="Stock">
-
-            <intent-filter>
-                <category android:name="android.intent.category.DEFAULT" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
+        <activity android:name=".NuevaLLanta.AddItem"/>
 
+        <activity android:name=".Cambio"/>
+
+        <activity android:name=".Stock"/>
     </application>
+
 </manifest>

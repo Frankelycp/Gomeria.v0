@@ -3,25 +3,15 @@ package com.g.gomeria;
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
-import android.widget.TextView;
 import android.widget.Toast;
 
 
 import androidx.appcompat.app.AppCompatActivity;
 
-
-import com.example.tutorialspoint7.myapplication.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;
