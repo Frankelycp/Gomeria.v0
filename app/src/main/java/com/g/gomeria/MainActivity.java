@@ -4,12 +4,16 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.g.gomeria.Cambio.Camion;
 import com.g.gomeria.Cambio.Gomeria;
 import com.g.gomeria.NuevaLLanta.AddItem;
+
+import org.w3c.dom.Text;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -20,6 +24,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button gomeria;
     Button camion;
     Button regresar;
+
+    TextView Text;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +50,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         regresar = (Button)findViewById(R.id.atras);
         regresar.setOnClickListener(this);
+
+
+        Text = findViewById(R.id.text);
+        Text.setVisibility(View.INVISIBLE);
 
 
 
@@ -76,6 +87,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             buttonAddItem3.setVisibility(View.GONE);
             buttonAddItem.setVisibility(View.GONE);
             regresar.setVisibility(View.VISIBLE);
+            Text.setVisibility(View.VISIBLE);
+
 
             //Intent intent = new Intent(getApplicationContext(), Gomeria.class);
            // startActivity(intent);
@@ -89,6 +102,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             buttonAddItem3.setVisibility(View.VISIBLE);
             buttonAddItem.setVisibility(View.VISIBLE);
             regresar.setVisibility(View.GONE);
+            Text.setVisibility(View.INVISIBLE);
+
 
         }
 
