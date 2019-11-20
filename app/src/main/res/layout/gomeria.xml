@@ -6,19 +6,52 @@
     android:layout_height="match_parent">
 
     <EditText
-        android:id="@+id/ET_SEMI"
+        android:id="@+id/n_odo"
         android:layout_width="132dp"
         android:layout_height="41dp"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:ems="10"
+        android:hint="Ingrese KMS"
+        android:inputType="numberDecimal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.06"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.391" />
+
+    <EditText
+        android:id="@+id/n_fuego"
+        android:layout_width="132dp"
+        android:layout_height="41dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:ems="10"
+        android:hint="N° Fuego"
+        android:inputType="number"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.06"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.313" />
+
+    <EditText
+        android:id="@+id/ET_SEMI"
+        android:layout_width="132dp"
+        android:layout_height="41dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:hint="Semi"
+        android:ems="10"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.015"
+        app:layout_constraintHorizontal_bias="0.939"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.166" />
+        app:layout_constraintVertical_bias="0.226" />
 
     <Spinner
         android:id="@+id/spinnerSemi"
@@ -29,22 +62,21 @@
         android:ems="10"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.015"
+        app:layout_constraintHorizontal_bias="0.939"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.166" />
+        app:layout_constraintVertical_bias="0.224" />
+
 
     <TextView
         android:id="@+id/destino"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="64dp"
         android:text="SELECCIONE DESTINO"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
 
     <EditText
         android:id="@+id/patente"
@@ -53,38 +85,41 @@
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:ems="10"
+        android:hint="Patente"
+
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.878"
+        app:layout_constraintHorizontal_bias="0.06"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.166" />
+        app:layout_constraintVertical_bias="0.226" />
 
     <Spinner
         android:id="@+id/spinnerPatente"
-        android:layout_width="132dp"
+        android:layout_width="131dp"
         android:layout_height="41dp"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:ems="10"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.878"
+        app:layout_constraintHorizontal_bias="0.06"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.166" />
+        app:layout_constraintVertical_bias="0.224" />
 
     <Button
         android:id="@+id/B_SEMI"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="48dp"
         android:text="SEMI"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.916"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.131" />
 
     <Button
         android:id="@+id/camion"
@@ -93,9 +128,37 @@
         android:text="CAMION"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.876"
+        app:layout_constraintHorizontal_bias="0.111"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.073" />
+        app:layout_constraintVertical_bias="0.131" />
+
+    <EditText
+        android:id="@+id/editGomeria"
+        android:layout_width="89dp"
+        android:layout_height="42dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="GOMERIA"
+        android:focusable="false"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/enviar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Confirmar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.95"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.951" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
