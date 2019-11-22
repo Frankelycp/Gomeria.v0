@@ -364,9 +364,9 @@ public class Gomeria extends AppCompatActivity {
 
 
 
-                                 //MUESTRA LA POSICION
-                                    //PosicionPatente
-                                      parent.getItemAtPosition(pos).toString();
+
+                                    PosicionPatente = (pos);
+
 
                                     Toast.makeText(Gomeria.this, "position" + (pos), Toast.LENGTH_SHORT).show();
                                 //
@@ -417,14 +417,20 @@ public class Gomeria extends AppCompatActivity {
                             spinnerUso.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                                 public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
 
+                                    PosicionUso = (pos);
 
-                                    parent.getItemAtPosition(pos).toString();
-                                    editTextUso.setText((CharSequence) spinnerUso.getSelectedItem());
-                                    ((TextView) view).setText(null);
+
 
                                     if (PosicionPatente != PosicionUso) {
 
                                         Toast.makeText(Gomeria.this, "Seleccione uso Correcto  " + (PosicionUso), Toast.LENGTH_SHORT).show();
+
+                                    }
+                                    else
+
+                                    {
+                                        editTextUso.setText((CharSequence) spinnerUso.getSelectedItem());
+                                        ((TextView) view).setText(null);
 
                                     }
 
