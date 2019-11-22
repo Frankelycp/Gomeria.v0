@@ -23,13 +23,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".NuevaLLanta.AddItem"/>
+        <activity android:name=".NuevaCubierta.AddItem"/>
 
-        <activity android:name=".Cambio.Gomeria"/>
+        <activity android:name=".CambioCubierta.Gomeria"/>
 
         <activity android:name=".Stock"/>
 
-        <activity android:name=".Cambio.Camion"/>
+        <activity android:name=".CambioCubierta.Camion"/>
 
     </application>
 

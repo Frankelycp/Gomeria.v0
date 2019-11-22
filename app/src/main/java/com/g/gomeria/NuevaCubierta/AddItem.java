@@ -1,9 +1,8 @@
-package com.g.gomeria.NuevaLLanta;
+package com.g.gomeria.NuevaCubierta;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -25,6 +24,9 @@ import com.android.volley.RetryPolicy;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.g.gomeria.Clases.Marca;
+import com.g.gomeria.Clases.Medida;
+import com.g.gomeria.Clases.Tipo;
 import com.g.gomeria.MainActivity;
 import com.g.gomeria.R;
 
@@ -45,7 +47,7 @@ import java.util.Map;
 import static android.R.layout.simple_spinner_item;
 
 
-public class AddItem extends AppCompatActivity implements View.OnClickListener {
+public class AddItem extends AppCompatActivity  {
 
     private String URLstring = "https://script.googleusercontent.com/a/macros/transchemicalsa.com.ar/echo?user_content_key=g2QYajePlcCa9d_YJKEc5TtaE_lPGy1AIdGBiVa2BIZfv0IFLoqWFb30c6ZIW1zHpd_-kXkNCb4ilPMKjPhCUdZQ6f64d5bBOJmA1Yb3SEsKFZqtv3DaNYcMrmhZHmUMi80zadyHLKDI_4Q-pKkLe7MNxJdrWyCsJV3ddGLkNmSAGz9x4Gmo7upEGACIRS2gvVvOc8yrT9pLX6HqBmn5ueosw75brm8XOxguoQHxo4t911Uq9f875pC0PWKWrtrCndNuyBbD-5uwbiTIP26maNIeZ2OIybTOY7sOArVtvnmvObqsO96hwSMyFZdnCJNOo-s-rPDCSt8JuS3Mld3bLg&lib=MnrE7b2I2PjfH799VodkCPiQjIVyBAxva";
 
@@ -91,10 +93,31 @@ public class AddItem extends AppCompatActivity implements View.OnClickListener {
 
 
         buttonAddItem = findViewById(R.id.btn_add_item);
-        buttonAddItem.setOnClickListener(this);
-
         retrieveJSON();
 
+        buttonAddItem.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                if ((editTextItemFuego.getText().toString().trim().length() != 0) && (editTextMedida.getText().toString().trim().length() != 0) && (editTextTipo.getText().toString().trim().length() != 0) && (editTextMarca.getText().toString().trim().length() != 0) && (editTextCantidad.getText().toString().trim().length() != 0)) {
+
+                    addItemToSheet();
+
+
+
+                } else {
+
+                    editTextItemFuego.setError("Ingrese Numero de Fuego!");
+                    editTextMedida.setError("Ingrese Medida!");
+                    editTextTipo.setError("Ingrese Tipo!");
+                    editTextCantidad.setError("Ingrese Cantidad!");
+                    editTextMarca.setError("Ingrese Marca!");
+                    Toast.makeText(AddItem.this, "No puede quedar campos vacios!", Toast.LENGTH_LONG).show();
+
+                }
+            }
+
+    });
 
     }
 
@@ -328,29 +351,7 @@ public class AddItem extends AppCompatActivity implements View.OnClickListener {
     }
 
 
-    @Override
-    public void onClick(View v) {
 
 
-        if (editTextItemFuego.getText().toString().trim().length() == 0 && editTextMedida.getText().toString().trim().length() == 0 && editTextTipo.getText().toString().trim().length() == 0 && editTextMarca.getText().toString().trim().length() == 0 && editTextCantidad.getText().toString().trim().length() == 0) {
-            editTextItemFuego.setError("Ingrese Numero de Fuego!");
-            editTextMedida.setError("Ingrese Medida!");
-            editTextTipo.setError("Ingrese Tipo!");
-            editTextCantidad.setError("Ingrese Cantidad!");
-            editTextMarca.setError("Ingrese Marca!");
-            Toast.makeText(AddItem.this, "No puede quedar campos vacios!", Toast.LENGTH_LONG).show();
 
-        }
-        else {
-
-            if (v == buttonAddItem) {
-
-
-                addItemToSheet();
-
-
-            }
-        }
-
-    }
 }

@@ -4,16 +4,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.g.gomeria.Cambio.Camion;
-import com.g.gomeria.Cambio.Gomeria;
-import com.g.gomeria.NuevaLLanta.AddItem;
-
-import org.w3c.dom.Text;
+import com.g.gomeria.CambioCubierta.Camion;
+import com.g.gomeria.CambioCubierta.Gomeria;
+import com.g.gomeria.NuevaCubierta.AddItem;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 

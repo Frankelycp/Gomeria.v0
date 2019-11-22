@@ -1,4 +1,4 @@
-package com.g.gomeria.Cambio;
+package com.g.gomeria.CambioCubierta;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -9,6 +9,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,10 +24,11 @@ import com.android.volley.RetryPolicy;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.g.gomeria.Clases.Estado;
+import com.g.gomeria.Clases.Uso;
 import com.g.gomeria.MainActivity;
-import com.g.gomeria.NuevaLLanta.AddItem;
-import com.g.gomeria.NuevaLLanta.Patente;
-import com.g.gomeria.NuevaLLanta.Semi;
+import com.g.gomeria.Clases.Patente;
+import com.g.gomeria.Clases.Semi;
 import com.g.gomeria.R;
 
 import org.json.JSONArray;
@@ -46,18 +48,32 @@ public class Gomeria extends AppCompatActivity {
 
 
     private ArrayList<Patente> PatenteArrayList;
-    private ArrayList<Patente> SemiArrayList;
+    private ArrayList<Semi> SemiArrayList;
+    private ArrayList<Uso> UsoArrayList;
+    private ArrayList<Estado> EstadoArrayList;
+
 
 
 
     //SE DECLARAN LAS LISTAS DE LOS ARRAY PARA LOS ADAPTERS
     private ArrayList<Patente> patenteArrayList;
     private ArrayList<Semi> semiArrayList;
+    private ArrayList<Uso> usoArrayList;
+    private ArrayList<Estado> estadoArrayList;
+
 
 //SE DECLARAN LAS LISTAS PARA LOS ARRAY
 
     private ArrayList<String> patente = new ArrayList<>();
     private ArrayList<String> semi = new ArrayList<>();
+    private ArrayList<String> estado = new ArrayList<>();
+    private ArrayList<String> uso = new ArrayList<>();
+
+
+
+
+
+
 
 
 
@@ -65,24 +81,52 @@ public class Gomeria extends AppCompatActivity {
 // SE DECLARAN LOS EDITVIEW
 
     EditText editTextPatente;
-    EditText et_semi;
-
     EditText et_gomeria;
-
     EditText editTextfuego;
-
     EditText ediTextOdo_destino;
+    EditText editTextUso;
+    EditText ediTextEstado;
+    EditText ediTextPosicion;
 
 
 
-    //SE DECLARAN LOS SPINNER
+    //SE DECLARAN LOS SPINNER CAMION
     private Spinner spinnerPatente;
+    private Spinner spinnerUso;
+    private Spinner spinnerEstado;
     private Spinner spinnerSemi;
 
 //SE DECLARAN LOS BOTONES
     Button camion ;
     Button b_semi ;
     Button enviar;
+
+
+    // SE DECLARAN  LOS BOTONES DE LAS RUEDAS
+
+    Integer PosicionPatente ;
+    Integer PosicionUso ;
+
+    ImageButton a1,a4;
+
+    ImageButton b1,b2,b3,b4;
+    ImageButton c1,c2,c3,c4;
+
+    ImageButton d1,d2,d3,d4;
+    ImageButton e1,e2,e3,e4;
+
+    ImageButton f1,f2,f3,f4;
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -95,32 +139,74 @@ public class Gomeria extends AppCompatActivity {
 //LE INDICO A LOS SPINER DE DONDE TOMAR EL VALOR EN EL XML
         spinnerPatente = findViewById(R.id.spinnerPatente);
         spinnerSemi = findViewById(R.id.spinnerSemi);
+        spinnerUso = findViewById(R.id.spinnerUso);
+        spinnerEstado = findViewById(R.id.spinnerEstado);
+
 
 //BOTONES PARA SELECIONAR A QUIEN SE LE CAMBIARA
         camion = (Button)findViewById(R.id.camion);
         b_semi  = (Button)findViewById(R.id.B_SEMI);
         enviar = (Button)findViewById(R.id.enviar) ;
 
+        a1 = (ImageButton)findViewById(R.id.a1) ;
+
+        a4 = (ImageButton)findViewById(R.id.a4) ;
+
+        b1 = (ImageButton)findViewById(R.id.b1) ;
+        b2 = (ImageButton)findViewById(R.id.b2) ;
+        b3 = (ImageButton)findViewById(R.id.b3) ;
+        b4 = (ImageButton)findViewById(R.id.b4) ;
+
+        c1 = (ImageButton)findViewById(R.id.c1) ;
+        c2 = (ImageButton)findViewById(R.id.c2) ;
+        c3 = (ImageButton)findViewById(R.id.c3) ;
+        c4 = (ImageButton)findViewById(R.id.c4) ;
+
+
+
+
 // CASILLAS DE TEXTO PARA LOS SPINER
         editTextPatente = findViewById(R.id.patente);
-        et_semi = findViewById(R.id.ET_SEMI);
         et_gomeria = findViewById(R.id.editGomeria);
         editTextfuego = findViewById(R.id.n_fuego);
         ediTextOdo_destino = findViewById(R.id.n_odo);
+        editTextUso = findViewById(R.id.usoPatente);
+        ediTextEstado = findViewById(R.id.estado);
+        ediTextPosicion = findViewById(R.id.posicionCamion);
 
 
 
-        editTextPatente.setVisibility(View.INVISIBLE);
-        et_semi.setVisibility(View.INVISIBLE);
+
+// esconder spinner de seleccion
         spinnerSemi.setVisibility(View.INVISIBLE);
         spinnerPatente.setVisibility(View.INVISIBLE);
+
+
+
+
+//ocultar Para cambio a camiones
+        editTextPatente.setVisibility(View.INVISIBLE);
         editTextfuego.setVisibility(View.INVISIBLE);
         ediTextOdo_destino.setVisibility(View.INVISIBLE);
+        editTextUso.setVisibility(View.INVISIBLE);
+        ediTextEstado.setVisibility(View.INVISIBLE);
+        ediTextPosicion.setVisibility(View.INVISIBLE);
+        spinnerUso.setVisibility(View.INVISIBLE);
+        spinnerEstado.setVisibility(View.INVISIBLE);
+        a1.setVisibility(View.INVISIBLE);
+        a4.setVisibility(View.INVISIBLE);
+        b1.setVisibility(View.INVISIBLE);
+        b2.setVisibility(View.INVISIBLE);
+        b3.setVisibility(View.INVISIBLE);
+        b4.setVisibility(View.INVISIBLE);
+        c1.setVisibility(View.INVISIBLE);
+        c2.setVisibility(View.INVISIBLE);
+        c3.setVisibility(View.INVISIBLE);
+        c4.setVisibility(View.INVISIBLE);
 
 
 
-
-
+//ocultar para los semi
 
 
 //OBTENGO EL JSON
@@ -133,11 +219,31 @@ public class Gomeria extends AppCompatActivity {
             public void onClick(View view) {
 
                     editTextPatente.setVisibility(View.VISIBLE);
-                    et_semi.setVisibility(View.INVISIBLE);
-                    spinnerSemi.setVisibility(View.INVISIBLE);
                     spinnerPatente.setVisibility(View.VISIBLE);
-                editTextfuego.setVisibility(View.VISIBLE);
-                ediTextOdo_destino.setVisibility(View.VISIBLE);
+                    editTextfuego.setVisibility(View.VISIBLE);
+                    ediTextOdo_destino.setVisibility(View.VISIBLE);
+                    editTextUso.setVisibility(View.VISIBLE);
+                    ediTextEstado.setVisibility(View.VISIBLE);
+                    ediTextPosicion.setVisibility(View.VISIBLE);
+                    spinnerUso.setVisibility(View.VISIBLE);
+                    spinnerEstado.setVisibility(View.VISIBLE);
+
+                     spinnerSemi.setVisibility(View.INVISIBLE);
+
+                     a1.setVisibility(View.VISIBLE);
+                    a4.setVisibility(View.VISIBLE);
+
+
+
+                b1.setVisibility(View.VISIBLE);
+                b2.setVisibility(View.VISIBLE);
+                b3.setVisibility(View.VISIBLE);
+                b4.setVisibility(View.VISIBLE);
+                c1.setVisibility(View.VISIBLE);
+                c2.setVisibility(View.VISIBLE);
+                c3.setVisibility(View.VISIBLE);
+                c4.setVisibility(View.VISIBLE);
+
 
 
             }
@@ -150,13 +256,34 @@ public class Gomeria extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                editTextPatente.setVisibility(View.INVISIBLE);
-                et_semi.setVisibility(View.VISIBLE);
                 spinnerSemi.setVisibility(View.VISIBLE);
                 spinnerPatente.setVisibility(View.INVISIBLE);
+                editTextPatente.setVisibility(View.VISIBLE);
+                editTextfuego.setVisibility(View.VISIBLE);
+                ediTextOdo_destino.setVisibility(View.VISIBLE);
+                editTextUso.setVisibility(View.VISIBLE);
+                ediTextEstado.setVisibility(View.VISIBLE);
+                ediTextPosicion.setVisibility(View.VISIBLE);
+                spinnerUso.setVisibility(View.VISIBLE);
+                spinnerEstado.setVisibility(View.VISIBLE);
 
-                editTextfuego.setVisibility(View.INVISIBLE);
-                editTextfuego.setVisibility(View.INVISIBLE);
+
+
+                a1.setVisibility(View.VISIBLE);
+
+                a4.setVisibility(View.VISIBLE);
+
+
+                b1.setVisibility(View.VISIBLE);
+                b2.setVisibility(View.VISIBLE);
+                b3.setVisibility(View.VISIBLE);
+                b4.setVisibility(View.VISIBLE);
+                c1.setVisibility(View.VISIBLE);
+                c2.setVisibility(View.VISIBLE);
+                c3.setVisibility(View.VISIBLE);
+                c4.setVisibility(View.VISIBLE);
+
+
 
 
             }
@@ -173,30 +300,20 @@ public class Gomeria extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                if ((ediTextOdo_destino.getText().toString().trim().length() !=0) && (editTextfuego.getText().toString().trim().length() !=0) && (editTextPatente.getText().toString().trim().length() != 0 )){
 
-                    addItemToSheet();
+                    if ((ediTextOdo_destino.getText().toString().trim().length() != 0) && (editTextfuego.getText().toString().trim().length() != 0) && (editTextPatente.getText().toString().trim().length() != 0)) {
+
+                        addItemToSheet();
+                    } else {
+
+                        Toast.makeText(Gomeria.this, "Ningun Campo puede quedar vacio", Toast.LENGTH_LONG).show(); //Correcto
+
+                    }
                 }
-                else
-                {
 
-                    Toast.makeText(Gomeria.this, "Ningun Campo puede quedar vacio", Toast.LENGTH_LONG).show(); //Correcto
-
-                }
-
-
-            }
 
 
         });
-
-
-
-
-
-
-
-
 
 
 
@@ -215,6 +332,9 @@ public class Gomeria extends AppCompatActivity {
                         Log.d("strrrrr", ">>" + response);
 
 // INTENTA BUSCAR LOS DATOS SELECCIONADOS EN EL JSON POR EL NOMBRE DE LA HOJA Y POR EL NOMBRE DE LA FILA  LOS GUARDA EN LOS ARRAY DEL ADAPTER Y EL ARRAY COMUN
+
+                        // PATENTE
+
 
                         try {
                             JSONObject obj = new JSONObject(response);
@@ -243,8 +363,17 @@ public class Gomeria extends AppCompatActivity {
                                 public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
 
 
+
+                                 //MUESTRA LA POSICION
+                                    //PosicionPatente
+                                      parent.getItemAtPosition(pos).toString();
+
+                                    Toast.makeText(Gomeria.this, "position" + (pos), Toast.LENGTH_SHORT).show();
+                                //
+
                                     editTextPatente.setText((CharSequence) spinnerPatente.getSelectedItem());
                                     ((TextView) view).setText(null);
+
 
 
 
@@ -259,6 +388,60 @@ public class Gomeria extends AppCompatActivity {
                             e.printStackTrace();
                         }
 
+                        //USO
+
+
+                        try {
+                            JSONObject obj = new JSONObject(response);
+                            usoArrayList = new ArrayList<>();
+                            JSONArray dataArray = obj.getJSONArray("datos");
+                            for (int i = 0; i < dataArray.length(); i++) {
+                                Uso playerMode2 = new Uso ();
+                                JSONObject dataobj = dataArray.getJSONObject(i);
+                                playerMode2.setUso(dataobj.getString("USO"));
+                                usoArrayList.add(playerMode2);
+                            }
+                            for (int i = 0; i < usoArrayList.size(); i++) {
+                                uso.add(usoArrayList.get(i).getUso());
+                            }
+
+                            ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(Gomeria.this, simple_spinner_item, uso);
+
+
+                            spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item); // The drop down view
+                            spinnerUso.setAdapter(spinnerArrayAdapter);
+                            spinnerUso.setSelection(spinnerArrayAdapter.NO_SELECTION, false);
+
+
+
+                            spinnerUso.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                                public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
+
+
+                                    parent.getItemAtPosition(pos).toString();
+                                    editTextUso.setText((CharSequence) spinnerUso.getSelectedItem());
+                                    ((TextView) view).setText(null);
+
+                                    if (PosicionPatente != PosicionUso) {
+
+                                        Toast.makeText(Gomeria.this, "Seleccione uso Correcto  " + (PosicionUso), Toast.LENGTH_SHORT).show();
+
+                                    }
+
+
+
+
+                                }
+                                public void onNothingSelected(AdapterView<?> parent) {
+                                }
+
+                            });
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                        //SEMI
 
                         try {
                             JSONObject obj = new JSONObject(response);
@@ -287,7 +470,7 @@ public class Gomeria extends AppCompatActivity {
                                 public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
 
 
-                                    et_semi.setText((CharSequence) spinnerSemi.getSelectedItem());
+                                    editTextPatente.setText((CharSequence) spinnerSemi.getSelectedItem());
                                     ((TextView) view).setText(null);
 
                                 }
@@ -301,6 +484,50 @@ public class Gomeria extends AppCompatActivity {
                             e.printStackTrace();
                         }
 
+
+                    // ESTADO
+
+
+                        try {
+                            JSONObject obj = new JSONObject(response);
+                            estadoArrayList = new ArrayList<>();
+                            JSONArray dataArray = obj.getJSONArray("datos");
+                            for (int i = 0; i < dataArray.length(); i++) {
+                                Estado playerMode3 = new Estado ();
+                                JSONObject dataobj = dataArray.getJSONObject(i);
+                                playerMode3.setEstado(dataobj.getString("ESTADO"));
+                                estadoArrayList.add(playerMode3);
+                            }
+                            for (int i = 0; i < estadoArrayList.size(); i++) {
+                                estado.add(estadoArrayList.get(i).getEstado());
+                            }
+
+                            ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(Gomeria.this, simple_spinner_item, estado);
+
+
+                            spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item); // The drop down view
+                            spinnerEstado.setAdapter(spinnerArrayAdapter);
+                            spinnerEstado.setSelection(spinnerArrayAdapter.NO_SELECTION, false);
+
+
+
+                            spinnerEstado.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                                public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
+
+
+                                    ediTextEstado.setText((CharSequence) spinnerEstado.getSelectedItem());
+                                    ((TextView) view).setText(null);
+
+                                }
+
+                                public void onNothingSelected(AdapterView<?> parent) {
+                                }
+
+                            });
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
 
 
 
@@ -318,9 +545,20 @@ public class Gomeria extends AppCompatActivity {
                     }
 
 
+
+
+
                 }
 
+
+
         );
+
+
+
+
+
+
 
 
         // request queue
@@ -342,17 +580,17 @@ public class Gomeria extends AppCompatActivity {
 
         final ProgressDialog loading = ProgressDialog.show(this, "Cambiando Cubierta", "Por favor Espere");
        final String n_fuego = editTextfuego.getText().toString().trim();
-       // final String uso = editTextItemUso.getText().toString().trim();
-       final String p_origen = et_gomeria.getText().toString().trim();
+        final String uso = editTextUso.getText().toString().trim();
+        final String estado = ediTextEstado.getText().toString().trim();
 
+        final String p_origen = et_gomeria.getText().toString().trim();
         final String odo_origen = et_gomeria.getText().toString().trim();
         final String posc_origen = et_gomeria.getText().toString().trim();
 
+
         final String p_destino = editTextPatente.getText().toString().trim();
-
-
        final String odo_destino = ediTextOdo_destino.getText().toString().trim();
-       // final String posc_destino = editTextPosc_destino.getText().toString().trim();
+       final String posc_destino = ediTextPosicion.getText().toString().trim();
 
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, "https://script.google.com/macros/s/AKfycbw_75KoOxUf-9hYM-KGWHXnxgo6wmqvvdaupIynTRKt_HQt9rlE/exec",
@@ -386,12 +624,18 @@ public class Gomeria extends AppCompatActivity {
 
 
                 parmas.put("n_fuego", n_fuego);
+                parmas.put("uso", uso);
+                parmas.put("estado", estado);
 
                 parmas.put("p_origen", p_origen);
                 parmas.put("odo_origen", odo_origen);
                 parmas.put("posc_origen", posc_origen);
+
+
+
                 parmas.put("p_destino", p_destino);
                 parmas.put("odo_destino", odo_destino);
+                parmas.put("posc_destino", posc_destino);
 
 
                 return parmas;

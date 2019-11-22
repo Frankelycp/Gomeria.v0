@@ -1,4 +1,4 @@
-package com.g.gomeria.NuevaLLanta;
+package com.g.gomeria.Clases;
 
 public class Medida {
 
