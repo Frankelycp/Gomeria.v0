@@ -551,16 +551,13 @@ public class Gomeria extends AppCompatActivity {
                                 usoArrayList.add(playerMode2);
                             }
                             for (int i = 0; i < usoArrayList.size(); i++) {
-                                if (i == 0) {
+                                if (i == 0){
                                     uso.add(usoArrayList.get(i).getUso());
                                 }
-                                if ((!usoArrayList.get(i).getUso().equals("")) && (i != 0)) {
+                                else if ((!usoArrayList.get(i).getUso().equals("")) && (i != 0)) {
                                     uso.add(usoArrayList.get(i).getUso());
                                 }
                             }
-//                            String[] uso = new String[] {
-//                                    "1", "2", "3", "4", "5", "6", "7"
-//                            };
 
                             ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(Gomeria.this, simple_spinner_item, uso);
                             spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item); // The drop down view
