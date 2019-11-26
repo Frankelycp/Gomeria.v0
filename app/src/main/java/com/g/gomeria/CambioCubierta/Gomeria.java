@@ -26,8 +26,10 @@ import com.android.volley.RetryPolicy;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.g.gomeria.Clases.Estado;
+import com.g.gomeria.Clases.ConfS;
+import com.g.gomeria.Clases.ConfT;
 import com.g.gomeria.Clases.Uso;
+import com.g.gomeria.Clases.Estado;
 import com.g.gomeria.HttpHandler;
 import com.g.gomeria.MainActivity;
 import com.g.gomeria.Clases.Patente;
@@ -58,6 +60,10 @@ public class Gomeria extends AppCompatActivity {
     private ArrayList<Uso> UsoArrayList;
     private ArrayList<Estado> EstadoArrayList;
 
+    private ArrayList<ConfT> ConfTArrayList;
+    private ArrayList<ConfS> ConfiSArrayList;
+
+
 
 
 
@@ -66,6 +72,9 @@ public class Gomeria extends AppCompatActivity {
     private ArrayList<Semi> semiArrayList;
     private ArrayList<Uso> usoArrayList;
     private ArrayList<Estado> estadoArrayList;
+    private ArrayList<ConfS> confSArrayList;
+    private ArrayList<ConfT> confTArrayList;
+
 
 
 //SE DECLARAN LAS LISTAS PARA LOS ARRAY
@@ -74,6 +83,9 @@ public class Gomeria extends AppCompatActivity {
     private ArrayList<String> semi = new ArrayList<>();
     private ArrayList<String> estado = new ArrayList<>();
     private ArrayList<String> uso = new ArrayList<>();
+    private ArrayList<String> confT = new ArrayList<>();
+    private ArrayList<String> confS = new ArrayList<>();
+
 
 
 
@@ -87,12 +99,14 @@ public class Gomeria extends AppCompatActivity {
 // SE DECLARAN LOS EDITVIEW
 
     EditText editTextPatente;
-    EditText et_gomeria;
+    TextView et_gomeria;
     EditText editTextfuego;
     EditText ediTextOdo_destino;
     EditText editTextUso;
     EditText ediTextEstado;
     EditText ediTextPosicion;
+    EditText ediTextConfiguracion;
+
 
 
 
@@ -101,6 +115,8 @@ public class Gomeria extends AppCompatActivity {
     private Spinner spinnerUso;
     private Spinner spinnerEstado;
     private Spinner spinnerSemi;
+    private Spinner spinnerConfiguracionT;
+    private Spinner spinnerConfiguracionS;
 
 //SE DECLARAN LOS BOTONES
     Button camion ;
@@ -135,6 +151,9 @@ public class Gomeria extends AppCompatActivity {
         spinnerSemi = findViewById(R.id.spinnerSemi);
         spinnerUso = findViewById(R.id.spinnerUso);
         spinnerEstado = findViewById(R.id.spinnerEstado);
+        spinnerConfiguracionS = findViewById(R.id.spinnerConfigSemi);
+        spinnerConfiguracionT = findViewById(R.id.spinnerConfigTrack);
+
 
 
 //BOTONES PARA SELECIONAR A QUIEN SE LE CAMBIARA
@@ -167,6 +186,7 @@ public class Gomeria extends AppCompatActivity {
         editTextUso = findViewById(R.id.usoPatente);
         ediTextEstado = findViewById(R.id.estado);
         ediTextPosicion = findViewById(R.id.posicionCamion);
+        ediTextConfiguracion = findViewById(R.id.config);
 
 
 
@@ -174,6 +194,8 @@ public class Gomeria extends AppCompatActivity {
 // esconder spinner de seleccion
         spinnerSemi.setVisibility(View.INVISIBLE);
         spinnerPatente.setVisibility(View.INVISIBLE);
+        spinnerConfiguracionT.setVisibility(View.INVISIBLE);
+        spinnerConfiguracionS.setVisibility(View.INVISIBLE);
 
 
 
@@ -187,6 +209,9 @@ public class Gomeria extends AppCompatActivity {
         ediTextPosicion.setVisibility(View.INVISIBLE);
         spinnerUso.setVisibility(View.INVISIBLE);
         spinnerEstado.setVisibility(View.INVISIBLE);
+        ediTextConfiguracion.setVisibility(View.INVISIBLE);
+        spinnerConfiguracionS.setVisibility(View.INVISIBLE);
+        spinnerConfiguracionT.setVisibility(View.INVISIBLE);
         a1.setVisibility(View.INVISIBLE);
         a4.setVisibility(View.INVISIBLE);
         b1.setVisibility(View.INVISIBLE);
@@ -393,6 +418,105 @@ public class Gomeria extends AppCompatActivity {
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
+
+
+
+
+                        //CONFIGURACION T
+
+
+                        try {
+                            JSONObject obj = new JSONObject(response);
+                            confSArrayList = new ArrayList<>();
+                            JSONArray dataArray = obj.getJSONArray("datos");
+                            for (int i = 0; i < dataArray.length(); i++) {
+                                ConfS playerMode4 = new ConfS  ();
+                                JSONObject dataobj = dataArray.getJSONObject(i);
+                                playerMode4.setConfs(dataobj.getString("CONF_SEMI"));
+                                confSArrayList.add(playerMode4);
+
+
+                            }
+                            for (int i = 0; i < confSArrayList.size(); i++) {
+                                confS.add(confSArrayList.get(i).getConfs());
+                            }
+
+                            ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(Gomeria.this, simple_spinner_item, confS);
+                            spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item); // The drop down view
+                            spinnerConfiguracionS.setAdapter(spinnerArrayAdapter);
+                            spinnerConfiguracionS.setSelection(spinnerArrayAdapter.NO_SELECTION, false);
+
+
+
+                            spinnerConfiguracionS.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                                public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
+
+
+                                    ediTextConfiguracion.setText((CharSequence) spinnerConfiguracionS.getSelectedItem());
+                                    ((TextView) view).setText(null);
+
+
+                                }
+                                public void onNothingSelected(AdapterView<?> parent) {
+                                }
+
+                            });
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+
+
+                        //CONFIGURACION S
+
+
+
+
+                        try {
+                            JSONObject obj = new JSONObject(response);
+                            confTArrayList = new ArrayList<>();
+                            JSONArray dataArray = obj.getJSONArray("datos");
+                            for (int i = 0; i < dataArray.length(); i++) {
+                                ConfT playerMode5 = new ConfT  ();
+                                JSONObject dataobj = dataArray.getJSONObject(i);
+                                playerMode5.setConft(dataobj.getString("CONF_TRAC"));
+                                confTArrayList.add(playerMode5);
+
+
+                            }
+                            for (int i = 0; i < confTArrayList.size(); i++) {
+                                confT.add(confTArrayList.get(i).getConft());
+                            }
+
+                            ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(Gomeria.this, simple_spinner_item, confT);
+                            spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item); // The drop down view
+                            spinnerConfiguracionT.setAdapter(spinnerArrayAdapter);
+                            spinnerConfiguracionT.setSelection(spinnerArrayAdapter.NO_SELECTION, false);
+
+
+
+                            spinnerConfiguracionT.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                                public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
+
+
+                                    ediTextConfiguracion.setText((CharSequence) spinnerConfiguracionT.getSelectedItem());
+                                    ((TextView) view).setText(null);
+
+
+                                }
+                                public void onNothingSelected(AdapterView<?> parent) {
+                                }
+
+                            });
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+
+
+
 
                         //USO
 
