@@ -4,7 +4,6 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 
-import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -31,7 +30,6 @@ import com.g.gomeria.Clases.ConfS;
 import com.g.gomeria.Clases.ConfT;
 import com.g.gomeria.Clases.Uso;
 import com.g.gomeria.Clases.Estado;
-import com.g.gomeria.HttpHandler;
 import com.g.gomeria.MainActivity;
 import com.g.gomeria.Clases.Patente;
 import com.g.gomeria.Clases.Semi;
@@ -48,7 +46,7 @@ import java.util.Map;
 import static android.R.layout.simple_spinner_item;
 
 
-public class Gomeria extends AppCompatActivity {
+public class Gomeria extends AppCompatActivity implements View.OnClickListener {
 
 
 
@@ -109,7 +107,9 @@ public class Gomeria extends AppCompatActivity {
     EditText editTextUso;
     EditText ediTextEstado;
     EditText ediTextPosicion;
-    EditText ediTextConfiguracion;
+    EditText editTextConfigT;
+    EditText editTextConfigS;
+
 
 
 
@@ -131,7 +131,7 @@ public class Gomeria extends AppCompatActivity {
     // SE DECLARAN  LOS BOTONES DE LAS RUEDAS
 
     Integer PosicionPatente ;
-    Integer PosicionUso ;
+    Integer PosicionSemi ;
 
     ImageButton a1,a4;
 
@@ -144,13 +144,16 @@ public class Gomeria extends AppCompatActivity {
 
     ImageButton f1,f2,f3,f4;
 
+
     boolean isValid;
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.gomeria);
+        isValid = false;
 
 
 
@@ -166,8 +169,14 @@ public class Gomeria extends AppCompatActivity {
 
 //BOTONES PARA SELECIONAR A QUIEN SE LE CAMBIARA
         camion = (Button)findViewById(R.id.camion);
+        camion.setOnClickListener(this);
+
         b_semi  = (Button)findViewById(R.id.B_SEMI);
+        b_semi.setOnClickListener(this);
+
         enviar = (Button)findViewById(R.id.enviar) ;
+        enviar.setOnClickListener(this);
+
 
         a1 = (ImageButton)findViewById(R.id.a1) ;
 
@@ -194,7 +203,9 @@ public class Gomeria extends AppCompatActivity {
         editTextUso = findViewById(R.id.usoPatente);
         ediTextEstado = findViewById(R.id.estado);
         ediTextPosicion = findViewById(R.id.posicionCamion);
-        ediTextConfiguracion = findViewById(R.id.config);
+        editTextConfigT = findViewById(R.id.configT);
+        editTextConfigS = findViewById(R.id.configS);
+
 
 
 
@@ -216,7 +227,8 @@ public class Gomeria extends AppCompatActivity {
         ediTextPosicion.setVisibility(View.INVISIBLE);
         spinnerUso.setVisibility(View.INVISIBLE);
         spinnerEstado.setVisibility(View.INVISIBLE);
-        ediTextConfiguracion.setVisibility(View.INVISIBLE);
+        editTextConfigT.setVisibility(View.INVISIBLE);
+        editTextConfigS.setVisibility(View.INVISIBLE);
         spinnerConfiguracionS.setVisibility(View.INVISIBLE);
         spinnerConfiguracionT.setVisibility(View.INVISIBLE);
         a1.setVisibility(View.INVISIBLE);
@@ -231,8 +243,14 @@ public class Gomeria extends AppCompatActivity {
         c4.setVisibility(View.INVISIBLE);
 
 
-        ediTextConfiguracion.setFocusable(false);
-        ediTextConfiguracion.setKeyListener(null);
+        editTextConfigT.setFocusable(false);
+        editTextConfigT.setKeyListener(null);
+
+        editTextConfigS.setFocusable(false);
+        editTextConfigS.setKeyListener(null);
+
+
+
         ediTextEstado.setFocusable(false);
         ediTextEstado.setKeyListener(null);
         editTextUso.setFocusable(false);
@@ -242,97 +260,9 @@ public class Gomeria extends AppCompatActivity {
 
 
 //OBTENGO EL JSON
+
+
         retrieveJSON();
-
-        camion.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View view) {
-
-                editTextPatente.setVisibility(View.VISIBLE);
-                spinnerPatente.setVisibility(View.VISIBLE);
-                editTextfuego.setVisibility(View.VISIBLE);
-                ediTextOdo_destino.setVisibility(View.VISIBLE);
-                editTextUso.setVisibility(View.VISIBLE);
-                ediTextEstado.setVisibility(View.VISIBLE);
-                ediTextPosicion.setVisibility(View.VISIBLE);
-                spinnerUso.setVisibility(View.VISIBLE);
-                spinnerEstado.setVisibility(View.VISIBLE);
-
-                spinnerSemi.setVisibility(View.INVISIBLE);
-                spinnerConfiguracionT.setVisibility(View.VISIBLE);
-                spinnerConfiguracionS.setVisibility(View.INVISIBLE);
-                ediTextConfiguracion.setVisibility(View.VISIBLE);
-
-                a1.setVisibility(View.VISIBLE);
-                a4.setVisibility(View.VISIBLE);
-
-
-
-
-
-
-                b1.setVisibility(View.VISIBLE);
-                b2.setVisibility(View.VISIBLE);
-                b3.setVisibility(View.VISIBLE);
-                b4.setVisibility(View.VISIBLE);
-                c1.setVisibility(View.VISIBLE);
-                c2.setVisibility(View.VISIBLE);
-                c3.setVisibility(View.VISIBLE);
-                c4.setVisibility(View.VISIBLE);
-                isValid = true;
-
-                ediTextConfiguracion.getText().clear();
-
-
-
-
-            }
-        });
-
-
-        b_semi.setOnClickListener(new View.OnClickListener() {
-                                      @Override
-                                      public void onClick(View v) {
-                                          spinnerPatente.setVisibility(View.INVISIBLE);
-                                          spinnerConfiguracionT.setVisibility(View.INVISIBLE);
-                                          spinnerSemi.setVisibility(View.VISIBLE);
-
-
-                                          editTextPatente.setVisibility(View.VISIBLE);
-                                          editTextfuego.setVisibility(View.VISIBLE);
-                                          ediTextOdo_destino.setVisibility(View.VISIBLE);
-                                          editTextUso.setVisibility(View.VISIBLE);
-                                          ediTextEstado.setVisibility(View.VISIBLE);
-                                          ediTextPosicion.setVisibility(View.VISIBLE);
-                                          spinnerUso.setVisibility(View.VISIBLE);
-                                          spinnerEstado.setVisibility(View.VISIBLE);
-
-                                          spinnerConfiguracionT.setVisibility(View.INVISIBLE);
-                                          spinnerConfiguracionS.setVisibility(View.VISIBLE);
-
-
-                                          ediTextConfiguracion.setVisibility(View.VISIBLE);
-                                          isValid = false;
-
-                                          ediTextConfiguracion.getText().clear();
-
-
-
-
-
-
-                                      }
-                                  }
-        );
-
-
-
-
-
-
-
-
 
     }
 
@@ -349,76 +279,13 @@ public class Gomeria extends AppCompatActivity {
                     public void onResponse(String response) {
                         Log.d("strrrrr", ">>" + response);
 
+
+
+
+
 // INTENTA BUSCAR LOS DATOS SELECCIONADOS EN EL JSON POR EL NOMBRE DE LA HOJA Y POR EL NOMBRE DE LA FILA  LOS GUARDA EN LOS ARRAY DEL ADAPTER Y EL ARRAY COMUN
 
                         // PATENTE
-
-
-                        try {
-                            JSONObject obj = new JSONObject(response);
-                            patenteArrayList = new ArrayList<>();
-                            JSONArray dataArray = obj.getJSONArray("datos");
-                            for (int i = 0; i < dataArray.length(); i++) {
-                                Patente playerMode = new Patente ();
-                                JSONObject dataobj = dataArray.getJSONObject(i);
-                                playerMode.setPatente(dataobj.getString("PATENTE"));
-                                patenteArrayList.add(playerMode);
-                            }
-                            for (int i = 0; i < patenteArrayList.size(); i++) {
-                                if (i == 0) {
-                                    patente.add(patenteArrayList.get(i).getPatente());
-                                }
-                                else if ((!patenteArrayList.get(i).getPatente().equals("")) && (i != 0)) {
-                                    patente.add(patenteArrayList.get(i).getPatente());
-                                }
-                            }
-
-                            final ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(Gomeria.this, simple_spinner_item, patente);
-
-
-                            spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item); // The drop down view
-                            spinnerPatente.setAdapter(spinnerArrayAdapter);
-                            spinnerPatente.setSelection(spinnerArrayAdapter.NO_SELECTION, true);
-
-
-
-                            spinnerPatente.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                                public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
-
-                                    if (isValid) {
-                                        spinnerConfiguracionT.setSelection(pos);
-                                    }
-
-
-
-
-                                  //   Toast.makeText(Gomeria.this, (test), Toast.LENGTH_SHORT).show();
-
-                                    editTextPatente.setText((CharSequence) spinnerPatente.getSelectedItem());
-                                    ((TextView) view).setText(null);
-
-                                }
-
-                                public void onNothingSelected(AdapterView<?> parent) {
-                                }
-
-
-
-
-
-                            });
-
-
-
-
-
-
-
-
-
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
 
 
 
@@ -454,15 +321,13 @@ public class Gomeria extends AppCompatActivity {
                             spinnerConfiguracionS.setAdapter(spinnerArrayAdapter);
                             spinnerConfiguracionS.setSelection(spinnerArrayAdapter.NO_SELECTION, false);
 
-                            if (isValid = false) {
-                                spinnerConfiguracionS.setSelection(PosicionPatente);
-                            }
+
 
                             spinnerConfiguracionS.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                                 public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
 
 
-                                    ediTextConfiguracion.setText((CharSequence) spinnerConfiguracionS.getSelectedItem());
+                                    editTextConfigS.setText((CharSequence) spinnerConfiguracionS.getSelectedItem());
                                     ((TextView) view).setText(null);
 
 
@@ -509,9 +374,7 @@ public class Gomeria extends AppCompatActivity {
                             spinnerConfiguracionT.setAdapter(spinnerArrayAdapter);
                             spinnerConfiguracionT.setSelection(spinnerArrayAdapter.NO_SELECTION, false);
 
-                            if (isValid) {
-                                spinnerConfiguracionT.setSelection(PosicionPatente);
-                            }
+
 
 
 
@@ -519,7 +382,7 @@ public class Gomeria extends AppCompatActivity {
                                 public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
 
 
-                                    ediTextConfiguracion.setText((CharSequence) spinnerConfiguracionT.getSelectedItem());
+                                    editTextConfigT.setText((CharSequence) spinnerConfiguracionT.getSelectedItem());
                                     ((TextView) view).setText(null);
 
 
@@ -532,8 +395,64 @@ public class Gomeria extends AppCompatActivity {
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
+// patente
+
+                        try {
+                            JSONObject obj = new JSONObject(response);
+                            patenteArrayList = new ArrayList<>();
+                            JSONArray dataArray = obj.getJSONArray("datos");
+                            for (int i = 0; i < dataArray.length(); i++) {
+                                Patente playerMode = new Patente ();
+                                JSONObject dataobj = dataArray.getJSONObject(i);
+                                playerMode.setPatente(dataobj.getString("PATENTE"));
+                                patenteArrayList.add(playerMode);
+                            }
+                            for (int i = 0; i < patenteArrayList.size(); i++) {
+                                if (i == 0) {
+                                    patente.add(patenteArrayList.get(i).getPatente());
+                                }
+                                else if ((!patenteArrayList.get(i).getPatente().equals("")) && (i != 0)) {
+                                    patente.add(patenteArrayList.get(i).getPatente());
+                                }
+                            }
+
+                            final ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(Gomeria.this, simple_spinner_item, patente);
 
 
+                            spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item); // The drop down view
+                            spinnerPatente.setAdapter(spinnerArrayAdapter);
+                            spinnerPatente.setSelection(spinnerArrayAdapter.NO_SELECTION, false);
+
+
+
+                            spinnerPatente.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                                public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
+                                    PosicionPatente = pos;
+
+
+
+
+
+
+                                        spinnerConfiguracionT.setSelection(PosicionPatente);
+
+
+                                    //   Toast.makeText(Gomeria.this, (test), Toast.LENGTH_SHORT).show();
+
+                                    editTextPatente.setText((CharSequence) spinnerPatente.getSelectedItem());
+                                    ((TextView) view).setText(null);
+
+                                }
+
+                                public void onNothingSelected(AdapterView<?> parent) {
+                                }
+
+                            });
+
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
 
 
 
@@ -572,15 +491,6 @@ public class Gomeria extends AppCompatActivity {
 
                                     editTextUso.setText((CharSequence) spinnerUso.getSelectedItem());
                                     ((TextView) view).setText(null);
-
-
-
-
-
-
-
-
-
 
 
 
@@ -624,8 +534,13 @@ public class Gomeria extends AppCompatActivity {
 
 
 
+
+
                             spinnerSemi.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                                public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
+                                public void onItemSelected(AdapterView<?> parent, View view, int posi, long id) {
+
+                                    PosicionSemi = posi;
+                                    spinnerConfiguracionS.setSelection(PosicionSemi);
 
 
                                     editTextPatente.setText((CharSequence) spinnerSemi.getSelectedItem());
@@ -730,6 +645,8 @@ public class Gomeria extends AppCompatActivity {
 
 
 
+
+
                                       // request queue
         RequestQueue requestQueue = Volley.newRequestQueue(this);
 
@@ -737,6 +654,9 @@ public class Gomeria extends AppCompatActivity {
 
 
     }
+
+
+
 
 
     // A PARTIR DE ACA ES PARA LLENAR LOS DATOS
@@ -830,5 +750,121 @@ public class Gomeria extends AppCompatActivity {
     }
 
 
+    @Override
+    public void onClick(View v) {
+
+        if(v==camion){
+
+            editTextPatente.setVisibility(View.VISIBLE);
+            spinnerPatente.setVisibility(View.VISIBLE);
+            editTextfuego.setVisibility(View.VISIBLE);
+            ediTextOdo_destino.setVisibility(View.VISIBLE);
+            editTextUso.setVisibility(View.VISIBLE);
+            ediTextEstado.setVisibility(View.VISIBLE);
+            ediTextPosicion.setVisibility(View.VISIBLE);
+            spinnerUso.setVisibility(View.VISIBLE);
+            spinnerEstado.setVisibility(View.VISIBLE);
+
+            spinnerSemi.setVisibility(View.INVISIBLE);
+            spinnerConfiguracionT.setVisibility(View.VISIBLE);
+            spinnerConfiguracionS.setVisibility(View.INVISIBLE);
+            editTextConfigT.setVisibility(View.VISIBLE);
+            editTextConfigS.setVisibility(View.INVISIBLE);
+
+
+            a1.setVisibility(View.VISIBLE);
+            a4.setVisibility(View.VISIBLE);
+
+
+
+
+
+
+            b1.setVisibility(View.VISIBLE);
+            b2.setVisibility(View.VISIBLE);
+            b3.setVisibility(View.VISIBLE);
+            b4.setVisibility(View.VISIBLE);
+            c1.setVisibility(View.VISIBLE);
+            c2.setVisibility(View.VISIBLE);
+            c3.setVisibility(View.VISIBLE);
+            c4.setVisibility(View.VISIBLE);
+
+            editTextConfigS.getText().clear();
+            editTextPatente.getText().clear();
+            editTextUso.getText().clear();
+            ediTextEstado.getText().clear();
+            ediTextPosicion.getText().clear();
+            ediTextOdo_destino.getText().clear();
+            editTextfuego.getText().clear();
+
+
+
+
+
+
+
+
+
+
+
+        }
+
+        if(v==b_semi){
+
+            spinnerPatente.setVisibility(View.INVISIBLE);
+            spinnerConfiguracionT.setVisibility(View.INVISIBLE);
+            spinnerSemi.setVisibility(View.VISIBLE);
+
+
+            editTextPatente.setVisibility(View.VISIBLE);
+            editTextfuego.setVisibility(View.VISIBLE);
+            ediTextOdo_destino.setVisibility(View.VISIBLE);
+            editTextUso.setVisibility(View.VISIBLE);
+            ediTextEstado.setVisibility(View.VISIBLE);
+            ediTextPosicion.setVisibility(View.VISIBLE);
+            spinnerUso.setVisibility(View.VISIBLE);
+            spinnerEstado.setVisibility(View.VISIBLE);
+
+            spinnerConfiguracionT.setVisibility(View.INVISIBLE);
+            spinnerConfiguracionS.setVisibility(View.VISIBLE);
+
+
+            editTextConfigS.setVisibility(View.VISIBLE);
+            editTextConfigT.setVisibility(View.INVISIBLE);
+
+
+            editTextConfigT.getText().clear();
+            editTextPatente.getText().clear();
+            editTextUso.getText().clear();
+            ediTextEstado.getText().clear();
+            ediTextPosicion.getText().clear();
+            ediTextOdo_destino.getText().clear();
+            editTextfuego.getText().clear();
+
+            isValid = false;
+
+
+
+
+
+        }
+        if(v==enviar){
+
+            if ((ediTextOdo_destino.getText().toString().trim().length() != 0) && (editTextfuego.getText().toString().trim().length() != 0) && (editTextPatente.getText().toString().trim().length() != 0)) {
+
+                addItemToSheet();
+            } else {
+
+                Toast.makeText(Gomeria.this, "Ningun Campo puede quedar vacio", Toast.LENGTH_LONG).show(); //Correcto
+
+            }
+        }
+
+
+    }
+
+
+
 
 }
+
