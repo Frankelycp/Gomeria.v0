@@ -3,6 +3,7 @@ package com.g.gomeria.CambioCubierta;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -10,6 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,6 +28,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.g.gomeria.Clases.Estado;
 import com.g.gomeria.Clases.Uso;
+import com.g.gomeria.HttpHandler;
 import com.g.gomeria.MainActivity;
 import com.g.gomeria.Clases.Patente;
 import com.g.gomeria.Clases.Semi;
@@ -43,6 +46,9 @@ import static android.R.layout.simple_spinner_item;
 
 
 public class Gomeria extends AppCompatActivity {
+
+
+
 
     private String URLstring = "https://script.googleusercontent.com/a/macros/transchemicalsa.com.ar/echo?user_content_key=g2QYajePlcCa9d_YJKEc5TtaE_lPGy1AIdGBiVa2BIZfv0IFLoqWFb30c6ZIW1zHpd_-kXkNCb4ilPMKjPhCUdZQ6f64d5bBOJmA1Yb3SEsKFZqtv3DaNYcMrmhZHmUMi80zadyHLKDI_4Q-pKkLe7MNxJdrWyCsJV3ddGLkNmSAGz9x4Gmo7upEGACIRS2gvVvOc8yrT9pLX6HqBmn5ueosw75brm8XOxguoQHxo4t911Uq9f875pC0PWKWrtrCndNuyBbD-5uwbiTIP26maNIeZ2OIybTOY7sOArVtvnmvObqsO96hwSMyFZdnCJNOo-s-rPDCSt8JuS3Mld3bLg&lib=MnrE7b2I2PjfH799VodkCPiQjIVyBAxva";
 
@@ -117,23 +123,11 @@ public class Gomeria extends AppCompatActivity {
 
     ImageButton f1,f2,f3,f4;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.gomeria);
+
 
 
 //LE INDICO A LOS SPINER DE DONDE TOMAR EL VALOR EN EL XML
@@ -284,6 +278,9 @@ public class Gomeria extends AppCompatActivity {
                 c4.setVisibility(View.VISIBLE);
 
 
+                String value;
+
+
 
 
             }
@@ -350,7 +347,7 @@ public class Gomeria extends AppCompatActivity {
                                 patente.add(patenteArrayList.get(i).getPatente());
                             }
 
-                            ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(Gomeria.this, simple_spinner_item, patente);
+                            final ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(Gomeria.this, simple_spinner_item, patente);
 
 
                             spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item); // The drop down view
@@ -364,25 +361,29 @@ public class Gomeria extends AppCompatActivity {
 
 
 
-
-                                    PosicionPatente = (pos);
-
-
-                                    Toast.makeText(Gomeria.this, "position" + (pos), Toast.LENGTH_SHORT).show();
-                                //
+                                  //   Toast.makeText(Gomeria.this, (test), Toast.LENGTH_SHORT).show();
 
                                     editTextPatente.setText((CharSequence) spinnerPatente.getSelectedItem());
                                     ((TextView) view).setText(null);
-
-
-
 
                                 }
 
                                 public void onNothingSelected(AdapterView<?> parent) {
                                 }
 
+
+
+
+
                             });
+
+
+
+
+
+
+
+
 
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -406,8 +407,6 @@ public class Gomeria extends AppCompatActivity {
                             }
 
                             ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(Gomeria.this, simple_spinner_item, uso);
-
-
                             spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item); // The drop down view
                             spinnerUso.setAdapter(spinnerArrayAdapter);
                             spinnerUso.setSelection(spinnerArrayAdapter.NO_SELECTION, false);
@@ -417,22 +416,17 @@ public class Gomeria extends AppCompatActivity {
                             spinnerUso.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                                 public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
 
-                                    PosicionUso = (pos);
+
+                                    editTextUso.setText((CharSequence) spinnerUso.getSelectedItem());
+                                    ((TextView) view).setText(null);
 
 
 
-                                    if (PosicionPatente != PosicionUso) {
 
-                                        Toast.makeText(Gomeria.this, "Seleccione uso Correcto  " + (PosicionUso), Toast.LENGTH_SHORT).show();
 
-                                    }
-                                    else
 
-                                    {
-                                        editTextUso.setText((CharSequence) spinnerUso.getSelectedItem());
-                                        ((TextView) view).setText(null);
 
-                                    }
+
 
 
 
@@ -491,6 +485,10 @@ public class Gomeria extends AppCompatActivity {
                         }
 
 
+
+
+
+
                     // ESTADO
 
 
@@ -513,6 +511,7 @@ public class Gomeria extends AppCompatActivity {
 
                             spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item); // The drop down view
                             spinnerEstado.setAdapter(spinnerArrayAdapter);
+
                             spinnerEstado.setSelection(spinnerArrayAdapter.NO_SELECTION, false);
 
 
@@ -562,11 +561,6 @@ public class Gomeria extends AppCompatActivity {
 
 
 
-
-
-
-
-
         // request queue
         RequestQueue requestQueue = Volley.newRequestQueue(this);
 
@@ -576,8 +570,14 @@ public class Gomeria extends AppCompatActivity {
     }
 
 
-
     // A PARTIR DE ACA ES PARA LLENAR LOS DATOS
+
+
+
+
+
+
+
 
 
     private void addItemToSheet() {
@@ -659,4 +659,7 @@ public class Gomeria extends AppCompatActivity {
 
 
     }
+
+
+
 }

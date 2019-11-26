@@ -24,7 +24,7 @@ import java.util.HashMap;
 
 
 
-public class Stock extends AppCompatActivity {
+public class Stock extends AppCompatActivity   {
 
 
 
