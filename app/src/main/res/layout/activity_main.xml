@@ -97,14 +97,14 @@
         android:id="@+id/text"
         android:layout_width="239dp"
         android:layout_height="69dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="60dp"
         android:autoText="false"
         android:text="SELECIONE ORIGEN DE LA CUBIERTA A CAMBIAR"
         android:textIsSelectable="false"
         android:typeface="normal"
         app:autoSizeTextType="uniform"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.535"
+        app:layout_constraintHorizontal_bias="0.468"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
