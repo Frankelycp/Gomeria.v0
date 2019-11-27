@@ -198,6 +198,7 @@ public class Gomeria extends AppCompatActivity implements View.OnClickListener {
 // CASILLAS DE TEXTO PARA LOS SPINER
         editTextPatente = findViewById(R.id.patente);
         et_gomeria = findViewById(R.id.editGomeria);
+        et_gomeria.setVisibility(View.INVISIBLE);
         editTextfuego = findViewById(R.id.n_fuego);
         ediTextOdo_destino = findViewById(R.id.n_odo);
         editTextUso = findViewById(R.id.usoPatente);
@@ -213,6 +214,7 @@ public class Gomeria extends AppCompatActivity implements View.OnClickListener {
 // esconder spinner de seleccion
         spinnerSemi.setVisibility(View.INVISIBLE);
         spinnerPatente.setVisibility(View.INVISIBLE);
+
 
 
 
@@ -823,6 +825,7 @@ public class Gomeria extends AppCompatActivity implements View.OnClickListener {
             ediTextEstado.setVisibility(View.VISIBLE);
             ediTextPosicion.setVisibility(View.VISIBLE);
             spinnerUso.setVisibility(View.VISIBLE);
+            spinnerPatente.bringToFront();
             spinnerEstado.setVisibility(View.VISIBLE);
 
             spinnerConfiguracionT.setVisibility(View.INVISIBLE);
