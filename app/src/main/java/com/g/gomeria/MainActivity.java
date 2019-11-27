@@ -8,7 +8,6 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.g.gomeria.CambioCubierta.Camion;
 import com.g.gomeria.CambioCubierta.Gomeria;
 import com.g.gomeria.NuevaCubierta.AddItem;
 
@@ -42,8 +41,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         gomeria = (Button)findViewById(R.id.gomeria);
         gomeria.setOnClickListener(this);
 
-        camion = (Button)findViewById(R.id.camion);
-        camion.setOnClickListener(this);
+       // camion = (Button)findViewById(R.id.camion);
+        //camion.setOnClickListener(this);
 
         regresar = (Button)findViewById(R.id.atras);
         regresar.setOnClickListener(this);
@@ -57,7 +56,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
         gomeria.setVisibility(View.GONE);
-        camion.setVisibility(View.GONE);
+       // camion.setVisibility(View.GONE);
         regresar.setVisibility(View.GONE);
 
     }
@@ -111,12 +110,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         }
 
-        if(v==camion){
-
-            Intent intent = new Intent(getApplicationContext(), Camion.class);
-            startActivity(intent);
-
-        }
 
 
     }

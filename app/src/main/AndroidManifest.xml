@@ -32,8 +32,6 @@
 
         <activity android:name=".Stock"/>
 
-        <activity android:name=".CambioCubierta.Camion"/>
-
     </application>
 
 </manifest>

@@ -133,10 +133,10 @@ public class Gomeria extends AppCompatActivity implements View.OnClickListener {
     Integer PosicionPatente ;
     Integer PosicionSemi ;
 
-    ImageButton a1,a4;
+    ImageButton a1,a2;
 
     ImageButton b1,b2,b3,b4;
-    ImageButton c1,c2,c3,c4;
+    ImageButton c1,c2,c3,c4,c11,c22;
 
     ImageButton d1,d2,d3,d4;
     ImageButton e1,e2,e3,e4;
@@ -179,18 +179,42 @@ public class Gomeria extends AppCompatActivity implements View.OnClickListener {
 
 
         a1 = (ImageButton)findViewById(R.id.a1) ;
+        a1.setOnClickListener(this);
 
-        a4 = (ImageButton)findViewById(R.id.a4) ;
+
+        a2 = (ImageButton)findViewById(R.id.a2) ;
+        a2.setOnClickListener(this);
 
         b1 = (ImageButton)findViewById(R.id.b1) ;
-        b2 = (ImageButton)findViewById(R.id.b2) ;
+        b1.setOnClickListener(this);
+
         b3 = (ImageButton)findViewById(R.id.b3) ;
+        b3.setOnClickListener(this);
+
+        b2 = (ImageButton)findViewById(R.id.b2);
+        b2.setOnClickListener(this);
+
         b4 = (ImageButton)findViewById(R.id.b4) ;
+        b4.setOnClickListener(this);
+
 
         c1 = (ImageButton)findViewById(R.id.c1) ;
+        c1.setOnClickListener(this);
+
         c2 = (ImageButton)findViewById(R.id.c2) ;
+        c2.setOnClickListener(this);
+
         c3 = (ImageButton)findViewById(R.id.c3) ;
+        c3.setOnClickListener(this);
+
         c4 = (ImageButton)findViewById(R.id.c4) ;
+        c4.setOnClickListener(this);
+
+        c11 = (ImageButton)findViewById(R.id.c11) ;
+        c11.setOnClickListener(this);
+        c22 = (ImageButton)findViewById(R.id.c22) ;
+        c22.setOnClickListener(this);
+
 
 
 
@@ -220,6 +244,11 @@ public class Gomeria extends AppCompatActivity implements View.OnClickListener {
 
 
 
+
+
+
+
+
 //ocultar Para cambio a camiones
         editTextPatente.setVisibility(View.INVISIBLE);
         editTextfuego.setVisibility(View.INVISIBLE);
@@ -234,7 +263,7 @@ public class Gomeria extends AppCompatActivity implements View.OnClickListener {
         spinnerConfiguracionS.setVisibility(View.INVISIBLE);
         spinnerConfiguracionT.setVisibility(View.INVISIBLE);
         a1.setVisibility(View.INVISIBLE);
-        a4.setVisibility(View.INVISIBLE);
+        a2.setVisibility(View.INVISIBLE);
         b1.setVisibility(View.INVISIBLE);
         b2.setVisibility(View.INVISIBLE);
         b3.setVisibility(View.INVISIBLE);
@@ -243,6 +272,9 @@ public class Gomeria extends AppCompatActivity implements View.OnClickListener {
         c2.setVisibility(View.INVISIBLE);
         c3.setVisibility(View.INVISIBLE);
         c4.setVisibility(View.INVISIBLE);
+        c11.setVisibility(View.INVISIBLE);
+        c22.setVisibility(View.INVISIBLE);
+
 
 
         editTextConfigT.setFocusable(false);
@@ -333,6 +365,10 @@ public class Gomeria extends AppCompatActivity implements View.OnClickListener {
                                     ((TextView) view).setText(null);
 
 
+
+
+
+
                                 }
                                 public void onNothingSelected(AdapterView<?> parent) {
                                 }
@@ -383,8 +419,8 @@ public class Gomeria extends AppCompatActivity implements View.OnClickListener {
                             spinnerConfiguracionT.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                                 public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
 
-
                                     editTextConfigT.setText((CharSequence) spinnerConfiguracionT.getSelectedItem());
+
                                     ((TextView) view).setText(null);
 
 
@@ -443,6 +479,44 @@ public class Gomeria extends AppCompatActivity implements View.OnClickListener {
 
                                     editTextPatente.setText((CharSequence) spinnerPatente.getSelectedItem());
                                     ((TextView) view).setText(null);
+
+
+                                    String posicion =spinnerConfiguracionT.getSelectedItem().toString();
+
+                                    if (posicion.equals("1S-2D")){
+
+                                        a1.setVisibility(View.VISIBLE);
+                                        a2.setVisibility(View.VISIBLE);
+                                        b1.setVisibility(View.VISIBLE);
+                                        b2.setVisibility(View.VISIBLE);
+                                        b3.setVisibility(View.VISIBLE);
+                                        b4.setVisibility(View.VISIBLE);
+                                        c1.setVisibility(View.VISIBLE);
+                                        c2.setVisibility(View.VISIBLE);
+                                        c3.setVisibility(View.VISIBLE);
+                                        c4.setVisibility(View.VISIBLE);
+
+                                    }
+
+                                    if (posicion.equals("1S-1D-1SS")){
+
+                                        a1.setVisibility(View.VISIBLE);
+                                        a2.setVisibility(View.VISIBLE);
+                                        b1.setVisibility(View.VISIBLE);
+                                        b2.setVisibility(View.VISIBLE);
+                                        b3.setVisibility(View.VISIBLE);
+                                        b4.setVisibility(View.VISIBLE);
+                                        c1.setVisibility(View.INVISIBLE);
+                                        c2.setVisibility(View.INVISIBLE);
+                                        c3.setVisibility(View.INVISIBLE);
+                                        c4.setVisibility(View.INVISIBLE);
+                                        c11.setVisibility(View.VISIBLE);
+                                        c22.setVisibility(View.VISIBLE);
+
+                                    }
+
+
+
 
                                 }
 
@@ -749,7 +823,13 @@ public class Gomeria extends AppCompatActivity implements View.OnClickListener {
         queue.add(stringRequest);
 
 
+
+
+
     }
+
+
+
 
 
     @Override
@@ -774,22 +854,7 @@ public class Gomeria extends AppCompatActivity implements View.OnClickListener {
             editTextConfigS.setVisibility(View.INVISIBLE);
 
 
-            a1.setVisibility(View.VISIBLE);
-            a4.setVisibility(View.VISIBLE);
 
-
-
-
-
-
-            b1.setVisibility(View.VISIBLE);
-            b2.setVisibility(View.VISIBLE);
-            b3.setVisibility(View.VISIBLE);
-            b4.setVisibility(View.VISIBLE);
-            c1.setVisibility(View.VISIBLE);
-            c2.setVisibility(View.VISIBLE);
-            c3.setVisibility(View.VISIBLE);
-            c4.setVisibility(View.VISIBLE);
 
             editTextConfigS.getText().clear();
             editTextPatente.getText().clear();
@@ -798,15 +863,7 @@ public class Gomeria extends AppCompatActivity implements View.OnClickListener {
             ediTextPosicion.getText().clear();
             ediTextOdo_destino.getText().clear();
             editTextfuego.getText().clear();
-
-
-
-
-
-
-
-
-
+            editTextConfigS.getText().clear();
 
 
         }
@@ -843,15 +900,92 @@ public class Gomeria extends AppCompatActivity implements View.OnClickListener {
             ediTextPosicion.getText().clear();
             ediTextOdo_destino.getText().clear();
             editTextfuego.getText().clear();
+            editTextConfigT.getText().clear();
 
             isValid = false;
+
+
+
+            a1.setVisibility(View.INVISIBLE);
+            a2.setVisibility(View.INVISIBLE);
+            b1.setVisibility(View.INVISIBLE);
+            b2.setVisibility(View.INVISIBLE);
+            b3.setVisibility(View.INVISIBLE);
+            b4.setVisibility(View.INVISIBLE);
+            c1.setVisibility(View.INVISIBLE);
+            c2.setVisibility(View.INVISIBLE);
+            c3.setVisibility(View.INVISIBLE);
+            c4.setVisibility(View.INVISIBLE);
+            c11.setVisibility(View.INVISIBLE);
+            c22.setVisibility(View.INVISIBLE);
+
+
 
 
 
 
 
         }
-        if(v==enviar){
+
+        if (v == a1) {
+            ediTextPosicion.setText("A1");
+
+        }
+        if (v == a2) {
+            ediTextPosicion.setText("A2");
+
+        }
+        if (v == b1) {
+            ediTextPosicion.setText("B1");
+
+        }
+        if (v == b2) {
+
+            ediTextPosicion.setText("B2");
+
+        }
+
+        if (v == b3) {
+
+            ediTextPosicion.setText("B3");
+
+        }
+        if (v == b4) {
+
+            ediTextPosicion.setText("B4");
+
+        }
+
+        if (v == c1) {
+
+            ediTextPosicion.setText("C1");
+
+        }
+        if(v==c2){
+
+            ediTextPosicion.setText("C2");
+
+        }
+        if(v==c3){
+            ediTextPosicion.setText("C3");
+
+        }
+        if(v==c4){
+            ediTextPosicion.setText("C4");
+
+        }
+        if(v==c11){
+            ediTextPosicion.setText("C11");
+
+        }        if(v==c22){
+            ediTextPosicion.setText("C22");
+
+        }
+
+
+
+
+        if(v==enviar) {
 
             if ((ediTextOdo_destino.getText().toString().trim().length() != 0) && (editTextfuego.getText().toString().trim().length() != 0) && (editTextPatente.getText().toString().trim().length() != 0)) {
 
@@ -861,8 +995,11 @@ public class Gomeria extends AppCompatActivity implements View.OnClickListener {
                 Toast.makeText(Gomeria.this, "Ningun Campo puede quedar vacio", Toast.LENGTH_LONG).show(); //Correcto
 
             }
-        }
 
+
+
+
+        }
 
     }
 
