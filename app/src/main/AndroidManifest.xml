@@ -3,12 +3,18 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.g.gomeria">
-    <supports-screens android:anyDensity="true" android:smallScreens="true" android:normalScreens="true" android:largeScreens="true" android:resizeable="true" android:xlargeScreens="true"/>
+    <supports-screens android:anyDensity="true" >
+
+    </supports-screens>
+
 
 
     <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
+        android:smallScreens="true" android:normalScreens="true"
+        android:largeScreens="true" android:resizeable="true"
+        android:xlargeScreens="true"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="Gomeria"
@@ -31,6 +37,11 @@
         <activity android:name=".CambioCubierta.Gomeria"/>
 
         <activity android:name=".Stock"/>
+
+        <activity android:name=".CambioCubierta.Camion"/>
+
+
+
 
     </application>
 
