@@ -215,6 +215,10 @@ public class Gomeria extends AppCompatActivity implements View.OnClickListener {
         c22 = (ImageButton)findViewById(R.id.c22) ;
         c22.setOnClickListener(this);
 
+        ediTextPosicion = (EditText)findViewById(R.id.posicionCamion);
+        ediTextPosicion.setOnClickListener(this);
+
+
 
 
 
@@ -929,10 +933,13 @@ public class Gomeria extends AppCompatActivity implements View.OnClickListener {
 
         if (v == a1) {
             ediTextPosicion.setText("A1");
+            setContentView(R.layout.gomeria);
 
         }
         if (v == a2) {
             ediTextPosicion.setText("A2");
+            setContentView(R.layout.gomeria);
+
 
         }
         if (v == b1) {
@@ -977,10 +984,20 @@ public class Gomeria extends AppCompatActivity implements View.OnClickListener {
         if(v==c11){
             ediTextPosicion.setText("C11");
 
-        }        if(v==c22){
+        }
+        if(v==c22){
             ediTextPosicion.setText("C22");
 
+
         }
+
+        if (v==ediTextPosicion){
+
+//            setContentView(R.layout.cubiertas_camion);
+            startActivity(new Intent(Gomeria.this , Pop.class));
+
+        }
+
 
 
 
