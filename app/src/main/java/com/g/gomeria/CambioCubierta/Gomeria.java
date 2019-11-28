@@ -304,6 +304,10 @@ public class Gomeria extends AppCompatActivity implements View.OnClickListener {
 
     }
 
+//    @Override
+//    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+//        super.onActivityResult(requestCode, resultCode, data);
+//    }
 
 
 //CLASE PARA EL JSON DONDE INVOCA LOS DATOS DE GOOGLE
