@@ -538,8 +538,6 @@ public class Gomeria extends AppCompatActivity implements View.OnClickListener {
                             e.printStackTrace();
                         }
 
-
-
                         //USO
 
 
@@ -642,10 +640,6 @@ public class Gomeria extends AppCompatActivity implements View.OnClickListener {
                         }
 
 
-
-
-
-
                     // ESTADO
 
 
@@ -721,14 +715,6 @@ public class Gomeria extends AppCompatActivity implements View.OnClickListener {
 
 
         );
-
-
-
-
-
-
-
-
 
 
                                       // request queue
@@ -829,11 +815,6 @@ public class Gomeria extends AppCompatActivity implements View.OnClickListener {
         RequestQueue queue = Volley.newRequestQueue(this);
 
         queue.add(stringRequest);
-
-
-
-
-
     }
 
 
@@ -860,8 +841,6 @@ public class Gomeria extends AppCompatActivity implements View.OnClickListener {
             spinnerConfiguracionS.setVisibility(View.INVISIBLE);
             editTextConfigT.setVisibility(View.VISIBLE);
             editTextConfigS.setVisibility(View.INVISIBLE);
-
-
 
 
             editTextConfigS.getText().clear();

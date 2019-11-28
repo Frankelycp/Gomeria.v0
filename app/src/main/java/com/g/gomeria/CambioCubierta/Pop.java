@@ -1,6 +1,7 @@
 package com.g.gomeria.CambioCubierta;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.View;
@@ -22,6 +23,7 @@ public class Pop extends Activity implements View.OnClickListener {
     EditText ediTextPosicion;
 
 
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
 
@@ -33,11 +35,16 @@ public class Pop extends Activity implements View.OnClickListener {
         int width = dm.widthPixels;
         int height = dm.heightPixels;
         getWindow().setLayout((int)(width*0.8),(int)(height*0.8));
+
+        Intent i = new Intent(this, Gomeria.class);
+        i.getExtras(ediTextPosicion.getText().toString());
+        startActivity(i);
     }
 
     @Override
     public void onClick(View v) {
         if (v == a1) {
+
             ediTextPosicion.setText("A1");
             setContentView(R.layout.gomeria);
 
