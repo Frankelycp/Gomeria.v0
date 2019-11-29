@@ -1,12 +1,12 @@
 package com.g.gomeria.CambioCubierta;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
+
 
 import androidx.annotation.Nullable;
 
@@ -16,12 +16,12 @@ import com.g.gomeria.R;
 
 
 public class Pop extends Activity implements View.OnClickListener {
+
     ImageButton a1,a2;
 
     ImageButton b1,b2,b3,b4;
     ImageButton c1,c2,c3,c4,c11,c22;
     EditText ediTextPosicion;
-
 
 
     @Override
@@ -36,9 +36,44 @@ public class Pop extends Activity implements View.OnClickListener {
         int height = dm.heightPixels;
         getWindow().setLayout((int)(width*0.8),(int)(height*0.8));
 
-        Intent i = new Intent(this, Gomeria.class);
-        i.getExtras(ediTextPosicion.getText().toString());
-        startActivity(i);
+        a1 = (ImageButton)findViewById(R.id.a1) ;
+        a1.setOnClickListener(this);
+
+
+        a2 = (ImageButton)findViewById(R.id.a2) ;
+        a2.setOnClickListener(this);
+
+        b1 = (ImageButton)findViewById(R.id.b1) ;
+        b1.setOnClickListener(this);
+
+        b3 = (ImageButton)findViewById(R.id.b3) ;
+        b3.setOnClickListener(this);
+
+        b2 = (ImageButton)findViewById(R.id.b2);
+        b2.setOnClickListener(this);
+
+        b4 = (ImageButton)findViewById(R.id.b4) ;
+        b4.setOnClickListener(this);
+
+
+        c1 = (ImageButton)findViewById(R.id.c1) ;
+        c1.setOnClickListener(this);
+
+        c2 = (ImageButton)findViewById(R.id.c2) ;
+        c2.setOnClickListener(this);
+
+        c3 = (ImageButton)findViewById(R.id.c3) ;
+        c3.setOnClickListener(this);
+
+        c4 = (ImageButton)findViewById(R.id.c4) ;
+        c4.setOnClickListener(this);
+
+        c11 = (ImageButton)findViewById(R.id.c11) ;
+        c11.setOnClickListener(this);
+        c22 = (ImageButton)findViewById(R.id.c22) ;
+        c22.setOnClickListener(this);
+
+
     }
 
     @Override

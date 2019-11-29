@@ -11,6 +11,8 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ThemedSpinnerAdapter;
+
 
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -976,8 +978,13 @@ public class Gomeria extends AppCompatActivity implements View.OnClickListener {
 
         if (v==ediTextPosicion){
 
-//            setContentView(R.layout.cubiertas_camion);
-            startActivity(new Intent(Gomeria.this , Pop.class));
+            setContentView(R.layout.cubiertas_camion);
+
+
+            //startActivity(new Intent(Gomeria.this , Pop.class));
+            //Intent intent = new Intent(getApplicationContext(), Pop.class);
+            //startActivity(intent);
+
 
         }
 
@@ -1002,8 +1009,6 @@ public class Gomeria extends AppCompatActivity implements View.OnClickListener {
         }
 
     }
-
-
 
 
 }
