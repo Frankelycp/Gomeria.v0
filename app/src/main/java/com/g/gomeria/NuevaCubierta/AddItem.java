@@ -142,9 +142,16 @@ public class AddItem extends AppCompatActivity  {
                                 playerModel.setMarca(dataobj.getString("MARCA"));
                                 marcaArrayList.add(playerModel);
                             }
+
                             for (int i = 0; i < marcaArrayList.size(); i++) {
-                                marca.add(marcaArrayList.get(i).getMarca());
+                                if (i == 0) {
+                                    marca.add(marcaArrayList.get(i).getMarca());
+                                }
+                                else if ((!marcaArrayList.get(i).getMarca().equals("")) && (i != 0)) {
+                                    marca.add(marcaArrayList.get(i).getMarca());
+                                }
                             }
+
 
                             ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<>(AddItem.this, simple_spinner_item, marca);
 
@@ -185,9 +192,18 @@ public class AddItem extends AppCompatActivity  {
                                 playerMode.setTipo(dataobj.getString("TIPO"));
                                 tipoArrayList.add(playerMode);
                             }
+
+
                             for (int i = 0; i < tipoArrayList.size(); i++) {
-                                tipo.add(tipoArrayList.get(i).getTipo());
+                                if (i == 0) {
+                                    tipo.add(tipoArrayList.get(i).getTipo());
+                                }
+                                else if ((!tipoArrayList.get(i).getTipo().equals("")) && (i != 0)) {
+                                    tipo.add(tipoArrayList.get(i).getTipo());
+                                }
                             }
+
+
 
                             ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<>(AddItem.this, simple_spinner_item, tipo);
 
@@ -227,9 +243,17 @@ public class AddItem extends AppCompatActivity  {
                                 playerMode2.setMedida(dataobj.getString("MEDIDA"));
                                 medidaArrayList.add(playerMode2);
                             }
+
+
                             for (int i = 0; i < medidaArrayList.size(); i++) {
-                                medida.add(medidaArrayList.get(i).getMedida());
+                                if (i == 0) {
+                                    medida.add(medidaArrayList.get(i).getMedida());
+                                }
+                                else if ((!medidaArrayList.get(i).getMedida().equals("")) && (i != 0)) {
+                                    medida.add(medidaArrayList.get(i).getMedida());
+                                }
                             }
+
 
                             ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<>(AddItem.this, simple_spinner_item, medida);
 

@@ -36,7 +36,6 @@ import com.g.gomeria.MainActivity;
 import com.g.gomeria.Clases.Patente;
 import com.g.gomeria.Clases.Semi;
 import com.g.gomeria.R;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -140,11 +139,18 @@ public class Gomeria extends AppCompatActivity implements View.OnClickListener {
     ImageButton b1,b2,b3,b4;
     ImageButton c1,c2,c3,c4,c11,c22;
 
+    ImageButton d11,d22;
+    ImageButton e11,e22;
+    ImageButton f11,f22;
+
+
+
     ImageButton d1,d2,d3,d4;
     ImageButton e1,e2,e3,e4;
-
-
     ImageButton f1,f2,f3,f4;
+
+
+
 
 
     boolean isValid;
@@ -224,6 +230,67 @@ public class Gomeria extends AppCompatActivity implements View.OnClickListener {
 
 
 
+        // lAS CUBIERTAS DEL SEMI
+
+
+        e1 = (ImageButton)findViewById(R.id.e1) ;
+        e1.setOnClickListener(this);
+
+
+        e2 = (ImageButton)findViewById(R.id.e2) ;
+        e2.setOnClickListener(this);
+
+        e3 = (ImageButton)findViewById(R.id.e3) ;
+        e3.setOnClickListener(this);
+
+        e4 = (ImageButton)findViewById(R.id.e4) ;
+        e4.setOnClickListener(this);
+
+        f1 = (ImageButton)findViewById(R.id.f1);
+        f1.setOnClickListener(this);
+
+        f2 = (ImageButton)findViewById(R.id.f2) ;
+        f2.setOnClickListener(this);
+
+
+        f3 = (ImageButton)findViewById(R.id.f3) ;
+        f3.setOnClickListener(this);
+
+        f4 = (ImageButton)findViewById(R.id.f4) ;
+        f4.setOnClickListener(this);
+
+        d1 = (ImageButton)findViewById(R.id.d1) ;
+        d1.setOnClickListener(this);
+
+        d2 = (ImageButton)findViewById(R.id.d2) ;
+        d2.setOnClickListener(this);
+
+        d3 = (ImageButton)findViewById(R.id.d3) ;
+        d3.setOnClickListener(this);
+        d4 = (ImageButton)findViewById(R.id.d4) ;
+        d4.setOnClickListener(this);
+
+
+
+        d11 = (ImageButton)findViewById(R.id.d11) ;
+        d11.setOnClickListener(this);
+        d22 = (ImageButton)findViewById(R.id.d22) ;
+        d22.setOnClickListener(this);
+
+        e11 = (ImageButton)findViewById(R.id.e11) ;
+        e11.setOnClickListener(this);
+        e22 = (ImageButton)findViewById(R.id.e22) ;
+        e22.setOnClickListener(this);
+
+
+        f11 = (ImageButton)findViewById(R.id.f11) ;
+        f11.setOnClickListener(this);
+        f22 = (ImageButton)findViewById(R.id.f22) ;
+        f22.setOnClickListener(this);
+
+
+
+
 
 // CASILLAS DE TEXTO PARA LOS SPINER
         editTextPatente = findViewById(R.id.patente);
@@ -280,6 +347,32 @@ public class Gomeria extends AppCompatActivity implements View.OnClickListener {
         c4.setVisibility(View.INVISIBLE);
         c11.setVisibility(View.INVISIBLE);
         c22.setVisibility(View.INVISIBLE);
+
+
+
+        d1.setVisibility(View.INVISIBLE);
+        d2.setVisibility(View.INVISIBLE);
+        d3.setVisibility(View.INVISIBLE);
+        d4.setVisibility(View.INVISIBLE);
+        f1.setVisibility(View.INVISIBLE);
+        f2.setVisibility(View.INVISIBLE);
+        f3.setVisibility(View.INVISIBLE);
+        f4.setVisibility(View.INVISIBLE);
+
+        e1.setVisibility(View.INVISIBLE);
+        e2.setVisibility(View.INVISIBLE);
+        e3.setVisibility(View.INVISIBLE);
+        e4.setVisibility(View.INVISIBLE);
+
+        //3SS
+        d11.setVisibility(View.INVISIBLE);
+        d22.setVisibility(View.INVISIBLE);
+
+        e11.setVisibility(View.INVISIBLE);
+        e22.setVisibility(View.INVISIBLE);
+
+        f11.setVisibility(View.INVISIBLE);
+        f22.setVisibility(View.INVISIBLE);
 
 
 
@@ -422,10 +515,6 @@ public class Gomeria extends AppCompatActivity implements View.OnClickListener {
                             spinnerConfiguracionT.setAdapter(spinnerArrayAdapter);
                             spinnerConfiguracionT.setSelection(spinnerArrayAdapter.NO_SELECTION, false);
 
-
-
-
-
                             spinnerConfiguracionT.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                                 public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
 
@@ -463,38 +552,25 @@ public class Gomeria extends AppCompatActivity implements View.OnClickListener {
                                     patente.add(patenteArrayList.get(i).getPatente());
                                 }
                             }
-
                             final ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(Gomeria.this, simple_spinner_item, patente);
-
 
                             spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item); // The drop down view
                             spinnerPatente.setAdapter(spinnerArrayAdapter);
                             spinnerPatente.setSelection(spinnerArrayAdapter.NO_SELECTION, false);
 
-
-
                             spinnerPatente.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                                 public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
                                     PosicionPatente = pos;
 
-
-
-
-
-
                                         spinnerConfiguracionT.setSelection(PosicionPatente);
 
-
                                     //   Toast.makeText(Gomeria.this, (test), Toast.LENGTH_SHORT).show();
-
                                     editTextPatente.setText((CharSequence) spinnerPatente.getSelectedItem());
                                     ((TextView) view).setText(null);
-
 
                                     String posicion =spinnerConfiguracionT.getSelectedItem().toString();
 
                                     if (posicion.equals("1S-2D")){
-
                                         a1.setVisibility(View.VISIBLE);
                                         a2.setVisibility(View.VISIBLE);
                                         b1.setVisibility(View.VISIBLE);
@@ -505,11 +581,9 @@ public class Gomeria extends AppCompatActivity implements View.OnClickListener {
                                         c2.setVisibility(View.VISIBLE);
                                         c3.setVisibility(View.VISIBLE);
                                         c4.setVisibility(View.VISIBLE);
-
-                                    }
-
-                                    if (posicion.equals("1S-1D-1SS")){
-
+                                        c22.setVisibility(View.INVISIBLE);
+                                        c11.setVisibility(View.INVISIBLE);
+                                    }if (posicion.equals("1S-1D-1SS")){
                                         a1.setVisibility(View.VISIBLE);
                                         a2.setVisibility(View.VISIBLE);
                                         b1.setVisibility(View.VISIBLE);
@@ -522,11 +596,7 @@ public class Gomeria extends AppCompatActivity implements View.OnClickListener {
                                         c4.setVisibility(View.INVISIBLE);
                                         c11.setVisibility(View.VISIBLE);
                                         c22.setVisibility(View.VISIBLE);
-
                                     }
-
-
-
 
                                 }
 
@@ -630,7 +700,103 @@ public class Gomeria extends AppCompatActivity implements View.OnClickListener {
                                     editTextPatente.setText((CharSequence) spinnerSemi.getSelectedItem());
                                     ((TextView) view).setText(null);
 
+                                    String posicions =spinnerConfiguracionT.getSelectedItem().toString();
+
+
+
+                                    if (posicions.equals("1D-1D")) {
+
+                                        //1D-1D
+                                        d1.setVisibility(View.VISIBLE);
+                                        d2.setVisibility(View.VISIBLE);
+                                        d3.setVisibility(View.VISIBLE);
+                                        d4.setVisibility(View.VISIBLE);
+
+
+                                        f1.setVisibility(View.VISIBLE);
+                                        f2.setVisibility(View.VISIBLE);
+                                        f3.setVisibility(View.VISIBLE);
+                                        f4.setVisibility(View.VISIBLE);
+
+                                        e1.setVisibility(View.INVISIBLE);
+                                        e2.setVisibility(View.INVISIBLE);
+                                        e3.setVisibility(View.INVISIBLE);
+                                        e4.setVisibility(View.INVISIBLE);
+                                        //3SS
+                                        d11.setVisibility(View.INVISIBLE);
+                                        d22.setVisibility(View.INVISIBLE);
+
+                                        e11.setVisibility(View.INVISIBLE);
+                                        e22.setVisibility(View.INVISIBLE);
+
+                                        f11.setVisibility(View.INVISIBLE);
+                                        f22.setVisibility(View.INVISIBLE);
+                                    }
+
+                                    if (posicions.equals("3D")) {
+
+                                        //1D-1D
+                                        d1.setVisibility(View.VISIBLE);
+                                        d2.setVisibility(View.VISIBLE);
+                                        d3.setVisibility(View.VISIBLE);
+                                        d4.setVisibility(View.VISIBLE);
+
+                                        f1.setVisibility(View.VISIBLE);
+                                        f2.setVisibility(View.VISIBLE);
+                                        f3.setVisibility(View.VISIBLE);
+                                        f4.setVisibility(View.VISIBLE);
+
+                                        e1.setVisibility(View.VISIBLE);
+                                        e2.setVisibility(View.VISIBLE);
+                                        e3.setVisibility(View.VISIBLE);
+                                        e4.setVisibility(View.VISIBLE);
+
+                                        //3SS
+                                        d11.setVisibility(View.INVISIBLE);
+                                        d22.setVisibility(View.INVISIBLE);
+
+                                        e11.setVisibility(View.INVISIBLE);
+                                        e22.setVisibility(View.INVISIBLE);
+
+                                        f11.setVisibility(View.INVISIBLE);
+                                        f22.setVisibility(View.INVISIBLE);
+                                    }
+
+                                    if (posicions.equals("3D")) {
+
+                                        //1D-1D
+                                        d1.setVisibility(View.INVISIBLE);
+                                        d2.setVisibility(View.INVISIBLE);
+                                        d3.setVisibility(View.INVISIBLE);
+                                        d4.setVisibility(View.INVISIBLE);
+                                        f1.setVisibility(View.INVISIBLE);
+                                        f2.setVisibility(View.INVISIBLE);
+                                        f3.setVisibility(View.INVISIBLE);
+                                        f4.setVisibility(View.INVISIBLE);
+
+                                        e1.setVisibility(View.INVISIBLE);
+                                        e2.setVisibility(View.INVISIBLE);
+                                        e3.setVisibility(View.INVISIBLE);
+                                        e4.setVisibility(View.INVISIBLE);
+
+                                        //3SS
+                                        d11.setVisibility(View.VISIBLE);
+                                        d22.setVisibility(View.VISIBLE);
+
+                                        e11.setVisibility(View.VISIBLE);
+                                        e22.setVisibility(View.VISIBLE);
+
+                                        f11.setVisibility(View.VISIBLE);
+                                        f22.setVisibility(View.VISIBLE);
+                                    }
+
+
                                 }
+
+
+
+
+
 
                                 public void onNothingSelected(AdapterView<?> parent) {
                                 }
@@ -994,7 +1160,13 @@ public class Gomeria extends AppCompatActivity implements View.OnClickListener {
 
         if(v==enviar) {
 
-            if ((ediTextOdo_destino.getText().toString().trim().length() != 0) && (editTextfuego.getText().toString().trim().length() != 0) && (editTextPatente.getText().toString().trim().length() != 0)) {
+            if ((editTextConfigT.getText().toString().trim().length() != 0
+                    || (editTextConfigS.getText().toString().trim().length() != 0))
+                    &&(ediTextOdo_destino.getText().toString().trim().length() != 0)
+                    && (editTextfuego.getText().toString().trim().length() != 0)
+                    && (editTextPatente.getText().toString().trim().length() != 0)&&(editTextUso.getText().toString().trim().length() != 0)
+                    &&(ediTextEstado.getText().toString().trim().length() != 0)
+                    &&(ediTextPosicion.getText().toString().trim().length() != 0)) {
 
                 addItemToSheet();
             } else {
