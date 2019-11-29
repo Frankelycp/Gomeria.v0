@@ -43,6 +43,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static android.R.layout.simple_spinner_item;
+import static com.g.gomeria.R.id.d3;
 
 
 public class Gomeria extends AppCompatActivity implements View.OnClickListener {
