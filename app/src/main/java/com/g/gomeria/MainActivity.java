@@ -100,7 +100,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             buttonAddItem3.setVisibility(View.VISIBLE);
             buttonAddItem.setVisibility(View.VISIBLE);
             buttonAddItem2.setVisibility(View.VISIBLE);
-
             regresar.setVisibility(View.GONE);
             Text.setVisibility(View.INVISIBLE);
 
