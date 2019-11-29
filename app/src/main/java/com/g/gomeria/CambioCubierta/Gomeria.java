@@ -221,6 +221,10 @@ public class Gomeria extends AppCompatActivity implements View.OnClickListener {
         c22 = (ImageButton)findViewById(R.id.c22) ;
         c22.setOnClickListener(this);
 
+        ediTextPosicion = (EditText)findViewById(R.id.posicionCamion);
+        ediTextPosicion.setOnClickListener(this);
+
+
 
 
 
@@ -393,6 +397,10 @@ public class Gomeria extends AppCompatActivity implements View.OnClickListener {
 
     }
 
+//    @Override
+//    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+//        super.onActivityResult(requestCode, resultCode, data);
+//    }
 
 
 //CLASE PARA EL JSON DONDE INVOCA LOS DATOS DE GOOGLE
@@ -600,8 +608,6 @@ public class Gomeria extends AppCompatActivity implements View.OnClickListener {
                             e.printStackTrace();
                         }
 
-
-
                         //USO
 
 
@@ -800,10 +806,6 @@ public class Gomeria extends AppCompatActivity implements View.OnClickListener {
                         }
 
 
-
-
-
-
                     // ESTADO
 
 
@@ -879,14 +881,6 @@ public class Gomeria extends AppCompatActivity implements View.OnClickListener {
 
 
         );
-
-
-
-
-
-
-
-
 
 
                                       // request queue
@@ -987,11 +981,6 @@ public class Gomeria extends AppCompatActivity implements View.OnClickListener {
         RequestQueue queue = Volley.newRequestQueue(this);
 
         queue.add(stringRequest);
-
-
-
-
-
     }
 
 
@@ -1018,8 +1007,6 @@ public class Gomeria extends AppCompatActivity implements View.OnClickListener {
             spinnerConfiguracionS.setVisibility(View.INVISIBLE);
             editTextConfigT.setVisibility(View.VISIBLE);
             editTextConfigS.setVisibility(View.INVISIBLE);
-
-
 
 
             editTextConfigS.getText().clear();
@@ -1095,10 +1082,13 @@ public class Gomeria extends AppCompatActivity implements View.OnClickListener {
 
         if (v == a1) {
             ediTextPosicion.setText("A1");
+            setContentView(R.layout.gomeria);
 
         }
         if (v == a2) {
             ediTextPosicion.setText("A2");
+            setContentView(R.layout.gomeria);
+
 
         }
         if (v == b1) {
@@ -1143,10 +1133,20 @@ public class Gomeria extends AppCompatActivity implements View.OnClickListener {
         if(v==c11){
             ediTextPosicion.setText("C11");
 
-        }        if(v==c22){
+        }
+        if(v==c22){
             ediTextPosicion.setText("C22");
 
+
         }
+
+        if (v==ediTextPosicion){
+
+//            setContentView(R.layout.cubiertas_camion);
+            startActivity(new Intent(Gomeria.this , Pop.class));
+
+        }
+
 
 
 

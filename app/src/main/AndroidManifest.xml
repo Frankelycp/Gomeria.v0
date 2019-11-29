@@ -39,6 +39,8 @@
         <activity android:name=".Stock"/>
 
         <activity android:name=".CambioCubierta.Camion"/>
+        <activity android:name=".CambioCubierta.Pop"
+            android:theme="@style/AppTheme.CustomTheme"/>
 
 
 
