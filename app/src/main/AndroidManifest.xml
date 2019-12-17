@@ -1,47 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.g.gomeria">
-    <supports-screens android:anyDensity="true" >
 
-    </supports-screens>
+    <supports-screens android:anyDensity="true"></supports-screens>
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS"/>
 
-
-    <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
-        android:smallScreens="true" android:normalScreens="true"
-        android:largeScreens="true" android:resizeable="true"
-        android:xlargeScreens="true"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="Gomeria"
-        android:screenOrientation="landscape"
+        android:largeScreens="true"
+        android:normalScreens="true"
+        android:resizeable="true"
         android:roundIcon="@mipmap/ic_launcher_round"
+        android:screenOrientation="landscape"
+        android:smallScreens="true"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
+        android:xlargeScreens="true"
+
+
         tools:ignore="GoogleAppIndexingWarning">
-
         <activity android:name=".MainActivity">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".NuevaCubierta.AddItem"/>
-
-        <activity android:name=".CambioCubierta.Gomeria"/>
-
-        <activity android:name=".Stock"/>
-
-        <activity android:name=".CambioCubierta.Camion"/>
-        <activity android:name=".CambioCubierta.Pop"
-            android:theme="@style/AppTheme.CustomTheme"/>
-
+        <activity android:name=".NuevaCubierta.AddItem" />
+        <activity android:name=".CambioCubierta.Gomeria" />
+        <activity android:name=".Stock" />
+        <activity android:name=".CambioCubierta.Unidad" />
+        <activity android:name=".CambioCubierta.Camion_origen"/>
+        <activity android:name=".CambioCubierta.Semi_origen"/>
+        <activity android:name=".CambioCubierta.Destino"/>
 
 
 

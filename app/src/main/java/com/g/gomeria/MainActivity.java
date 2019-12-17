@@ -8,7 +8,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.g.gomeria.CambioCubierta.Camion;
+import com.g.gomeria.CambioCubierta.Unidad;
 import com.g.gomeria.CambioCubierta.Gomeria;
 import com.g.gomeria.NuevaCubierta.AddItem;
 
@@ -115,7 +115,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         if(v==camion){
 
-            Intent intent = new Intent(getApplicationContext(), Camion.class);
+            Intent intent = new Intent(getApplicationContext(), Unidad.class);
             startActivity(intent);
 
         }

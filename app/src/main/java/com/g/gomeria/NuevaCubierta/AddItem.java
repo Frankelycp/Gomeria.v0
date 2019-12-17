@@ -24,6 +24,7 @@ import com.android.volley.RetryPolicy;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.g.gomeria.CambioCubierta.Gomeria;
 import com.g.gomeria.Clases.Marca;
 import com.g.gomeria.Clases.Medida;
 import com.g.gomeria.Clases.Tipo;
@@ -48,6 +49,9 @@ import static android.R.layout.simple_spinner_item;
 
 
 public class AddItem extends AppCompatActivity  {
+
+    private ProgressDialog pDialog;
+
 
     private String URLstring = "https://script.googleusercontent.com/a/macros/transchemicalsa.com.ar/echo?user_content_key=g2QYajePlcCa9d_YJKEc5TtaE_lPGy1AIdGBiVa2BIZfv0IFLoqWFb30c6ZIW1zHpd_-kXkNCb4ilPMKjPhCUdZQ6f64d5bBOJmA1Yb3SEsKFZqtv3DaNYcMrmhZHmUMi80zadyHLKDI_4Q-pKkLe7MNxJdrWyCsJV3ddGLkNmSAGz9x4Gmo7upEGACIRS2gvVvOc8yrT9pLX6HqBmn5ueosw75brm8XOxguoQHxo4t911Uq9f875pC0PWKWrtrCndNuyBbD-5uwbiTIP26maNIeZ2OIybTOY7sOArVtvnmvObqsO96hwSMyFZdnCJNOo-s-rPDCSt8JuS3Mld3bLg&lib=MnrE7b2I2PjfH799VodkCPiQjIVyBAxva";
 
@@ -93,7 +97,11 @@ public class AddItem extends AppCompatActivity  {
 
 
         buttonAddItem = findViewById(R.id.btn_add_item);
+        displayLoader();
+
         retrieveJSON();
+
+
 
         buttonAddItem.setOnClickListener(new View.OnClickListener() {
 
@@ -121,6 +129,15 @@ public class AddItem extends AppCompatActivity  {
 
     }
 
+    private void displayLoader(){
+        pDialog = new ProgressDialog(AddItem.this);
+        pDialog.setMessage("Cargando Datos.. Espere un momento...");
+        pDialog.setIndeterminate(false);
+        pDialog.setCancelable(false);
+        pDialog.show();
+
+    }
+
 
     private void retrieveJSON() {
 
@@ -129,6 +146,8 @@ public class AddItem extends AppCompatActivity  {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
+
+                        pDialog.dismiss();
                         Log.d("strrrrr", ">>" + response);
 
 
@@ -292,6 +311,7 @@ public class AddItem extends AppCompatActivity  {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
+                        pDialog.dismiss();
                         //displaying the error in toast if occurrs
                         Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
 

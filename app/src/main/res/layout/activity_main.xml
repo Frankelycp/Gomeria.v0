@@ -8,21 +8,6 @@
 
 
     <Button
-        android:id="@+id/B_SEMI"
-        android:layout_width="300dp"
-        android:layout_height="150dp"
-        android:textSize="23sp"
-        android:background="#3498DB"
-
-        android:text="SEMI"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.714" />
-
-    <Button
         android:id="@+id/STOCK"
         android:layout_width="300dp"
         android:layout_height="150dp"
@@ -56,10 +41,10 @@
         android:id="@+id/camion"
         android:layout_width="300dp"
         android:layout_height="150dp"
-        android:textSize="23sp"
         android:background="#3498DB"
+        android:text="UNIDAD"
 
-        android:text="CAMION"
+        android:textSize="23sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
